@@ -46,7 +46,7 @@ export const LoginPage = () => {
                     <Col className={'col-9'}>
                         <Row>
                             <Row>
-                                <img src={'/Logo-HHEC-250.png'} alt={'logo'} width={'250px'} id={'logo'}/>
+                                <img src={'/Logo-HHEC-250.png'} alt={'logo'} width={'250px'} id={'logo'} onClick={()=>{navigate('/')}}/>
                             </Row>
                             <Row>
                                 <Form onSubmit={handleSubmit}>

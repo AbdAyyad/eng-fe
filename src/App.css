@@ -211,3 +211,19 @@ td,th {
 .bottom-25 {
     margin-bottom: 25px;
 }
+
+.top-365 {
+    margin-top: 365px !important;
+}
+
+#code {
+    margin-right: 55px;
+}
+
+#description {
+    margin-right: 10px;
+}
+
+.edit-btn {
+    background-color: #309de9 !important;
+}

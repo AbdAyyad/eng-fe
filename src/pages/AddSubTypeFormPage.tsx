@@ -1,9 +1,10 @@
 import React from "react";
 import {Col, Row} from "react-bootstrap";
-import CategoryForm from "../component/CategoryForm";
+import AddCatForm from "../component/AddCatForm";
 import {useNavigate} from "react-router-dom";
+import AddSubTypeForm from "../component/AddSubTypeForm";
 
-const AddCategoryPage = () => {
+const AddSubTypeFormPage = () => {
     const navigate = useNavigate()
     return (
         <Row className={'background_page'}>
@@ -12,11 +13,11 @@ const AddCategoryPage = () => {
             </Col>
             <Col className={'col-10'}>
                 <Row>
-                    <CategoryForm/>
+                    <AddSubTypeForm/>
                 </Row>
             </Col>
         </Row>
     )
 }
 
-export default AddCategoryPage
+export default AddSubTypeFormPage

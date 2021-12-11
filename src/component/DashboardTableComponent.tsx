@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import ItemsService from "../service/ItemsService";
-import {Col, Row, Form} from "react-bootstrap";
+import {Col, Row, Form, Button} from "react-bootstrap";
 import Url from "../service/Url";
 
 const DashboardTableComponent = () => {
@@ -92,6 +92,7 @@ const DashboardTableComponent = () => {
                         <th scope="col">Phone</th>
                         <th scope="col">email</th>
                         <th scope="col">Notes</th>
+                        <th></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -107,6 +108,9 @@ const DashboardTableComponent = () => {
                                     <td key={'phone' + item.phone + idx}>{item.phone}</td>
                                     <td key={'* ' + idx}></td>
                                     <td key={'note' + item.notes + idx}>{item.notes}</td>
+                                    <td>
+                                        <Button className={'btn edit-btn'}>تعديل</Button>
+                                    </td>
                                 </tr>
                             )
                         })

@@ -10,6 +10,10 @@ import CreateUserPage from "./pages/CreateUserPage";
 import OrderPage from "./pages/OrderPage";
 import UserPage from "./pages/UserPage";
 import SelectionPage from "./pages/SelectionPage";
+import AddCategoryPage from "./pages/AddCategoryPage";
+import AddCatFormPage from "./pages/AddCatFormPage";
+import AddTypeFormPage from "./pages/AddTypeFormPage";
+import AddSubTypeFormPage from "./pages/AddSubTypeFormPage";
 
 
 function App() {
@@ -41,7 +45,19 @@ function App() {
         },
         {
             path: '/category',
-            element: loggedIn ? <SelectionPage/> : <Navigate to={'/'}/>
+            element: loggedIn ? <AddCategoryPage/> : <Navigate to={'/'}/>
+        },
+        {
+            path: '/add-category',
+            element: loggedIn ? <AddCatFormPage/> : <Navigate to={'/'}/>
+        },
+        {
+            path: '/add-type',
+            element: loggedIn ? <AddTypeFormPage/> : <Navigate to={'/'}/>
+        },
+        {
+            path: '/add-subtype',
+            element: loggedIn ? <AddSubTypeFormPage/> : <Navigate to={'/'}/>
         },
         {
             path: '/log-out',

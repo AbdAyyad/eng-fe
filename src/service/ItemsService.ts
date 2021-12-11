@@ -20,12 +20,24 @@ class ItemsService {
         return axios.get<[TypeResponse]>(Url.type)
     }
 
+    postTypes = (body: TypeResponse) => {
+        return axios.post<[TypeResponse]>(Url.type, body)
+    }
+
     getSubTypes = (type: string) => {
         return axios.get<[TypeResponse]>(`${Url.item}/${type}`)
     }
 
+    postSubTypes = (type: string, body: TypeResponse) => {
+        return axios.post<[TypeResponse]>(`${Url.item}/${type}`, body)
+    }
+
     getCategory = () => {
         return axios.get<[TypeResponse]>(Url.category)
+    }
+
+    postCategory = (body: TypeResponse) => {
+        return axios.post<[TypeResponse]>(Url.category, body)
     }
 
     postOrder = (body: OrderRequest) => {

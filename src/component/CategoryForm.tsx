@@ -1,7 +1,9 @@
 import React from "react";
 import {Button, Col, Form, Row} from "react-bootstrap";
+import {useNavigate} from "react-router-dom";
 
 const CategoryForm = () => {
+    const navigate = useNavigate()
     return (
         <Row>
             <Form>
@@ -28,13 +30,23 @@ const CategoryForm = () => {
                 </Row>
                 <Row className={'text-right'}>
                     <Col className={'col-3'}>
-                        <img src={'/add.png'} className={'bottom-25'}/>
+                        <img src={'/add.png'} className={'bottom-25'}
+                             onClick={ ()=>{
+                                 navigate('/add-subtype')
+                             }}
+                        />
                     </Col>
                     <Col className={'col-3'}>
-                        <img src={'/add.png'} className={'bottom-25'}/>
+                        <img src={'/add.png'} className={'bottom-25'}
+                        onClick={ ()=>{
+                            navigate('/add-type')
+                        }}
+                        />
                     </Col>
                     <Col className={'col-3'}>
-                        <img src={'/add.png'} className={'bottom-25'}/>
+                        <img src={'/add.png'} className={'bottom-25'} onClick={() => {
+                            navigate('/add-category')
+                        }}/>
                     </Col>
                     <Col className={'col-3'}/>
                 </Row>
