@@ -7,6 +7,8 @@ class Url {
     public static excel = this.order + '/csv'
     public static createUser = this.api + '/user'
     public static category = this.api + '/category'
+    public static type = this.api + '/type'
+    public static item = this.api + '/item'
 }
 
 export default Url

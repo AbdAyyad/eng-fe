@@ -1,51 +1,48 @@
 import React from "react";
-import {Row} from "react-bootstrap";
 import {NavLink} from "react-router-dom";
 
 const LeftPanel = () => {
     return (
         <>
-            <Row>
-                <ul className={'navbar-nav mr-auto background'}>
+            <div id={'sidebar'}>
+                <ul className={'navbar-nav mr-auto '}>
                     <li className={'nav-item active'}>
-                        <NavLink to={'/dashboard'} className={'nav-link'}>
-                            <img src={'Logo-HHEC-250.png'} alt={'logo'} width={'200'}/>
+                        <NavLink to={'/'} className={'nav-link background'}>
+                            <img src={'Logo-HHEC-250.png'} alt={'logo'} width={'220'}/>
                         </NavLink>
                     </li>
 
-                    <li className={'nav-item'}>
-                        <NavLink to={'/dashboard'} className={'nav-link'}>
-                            <h4>dashboard</h4>
-                        </NavLink>
-                    </li>
-
-                    <li className={'nav-item'}>
-                        <NavLink to={'/user'} className={'nav-link'}>
-                            <h4>users</h4>
-                        </NavLink>
-                    </li>
-
-                    <li className={'nav-item'}>
-                        <NavLink to={'/create-user'} className={'nav-link'}>
-                            <h4>create user</h4>
-                        </NavLink>
-                    </li>
-
-                    <li className={'nav-item'}>
+                    <li className={'nav-item'} id={'add_data'}>
                         <NavLink to={'/new-order'} className={'nav-link'}>
-                            <h4>new order</h4>
+                            <h4 id={'add_data_text'}>إدخال بيانات</h4>
                         </NavLink>
                     </li>
 
-                    <li className={'nav-item'}>
-                        <NavLink className={'nav-link'} to={'/log-out'}>
-                            <h4>log out</h4>
+                    <li className={'nav-item'} id={'contractors'}>
+                        <NavLink to={'/dashboard'} className={'nav-link'}>
+                            <h4>شجرة اسماء الموردين</h4>
                         </NavLink>
                     </li>
 
+                    <li className={'nav-item'} id={'settings'}>
+                        <NavLink to={'/user'} className={'nav-link'}>
+                            <h4>الإعدادات</h4>
+                        </NavLink>
+                    </li>
+
+                    <li className={'nav-item'} id={'add_data'}>
+                        <NavLink to={'/category'} className={'nav-link'}>
+                            <h4>إضافة و تعديل التصنيفات</h4>
+                        </NavLink>
+                    </li>
+
+                    <li className={'nav-item'} id={'search'}>
+                        <NavLink className={'nav-link'} to={'/'}>
+                            <h4>بحث</h4>
+                        </NavLink>
+                    </li>
                 </ul>
-
-            </Row>
+            </div>
         </>
     )
 }

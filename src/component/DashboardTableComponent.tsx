@@ -24,7 +24,7 @@ const DashboardTableComponent = () => {
         itemService.getItems().then(r => {
             console.log(r.data)
             const data = r.data
-            itemService.getTypes().then(r => {
+            itemService.getCategory().then(r => {
                 setState({
                     data: data,
                     filters: r.data

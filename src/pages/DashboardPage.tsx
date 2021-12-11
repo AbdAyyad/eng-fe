@@ -2,19 +2,15 @@ import React from 'react'
 import {Col, Row} from "react-bootstrap";
 import LeftPanel from "../component/LeftPanel";
 import DashboardTableComponent from "../component/DashboardTableComponent";
-import TopBar from "../component/TopBar";
 
 const DashboardPage = () => {
     return (
         <>
-            <Row>
-                <Col className={'col-2'}>
+            <Row className={'background_page'}>
+                <Col className={'col-4'}>
                     <LeftPanel/>
                 </Col>
-                <Col className={'col-10'}>
-                    <Row>
-                        <TopBar/>
-                    </Row>
+                <Col className={'col-8'}>
                     <DashboardTableComponent/>
                 </Col>
             </Row>

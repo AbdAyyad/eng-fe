@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import UserService from "../service/UserService";
-import {Col, Form, Row} from "react-bootstrap";
-import Url from "../service/Url";
+import {Col} from "react-bootstrap";
+import Auth from "../service/Auth";
 
 const UserDataForm = () => {
     const [state, setState] = useState({
@@ -21,36 +21,47 @@ const UserDataForm = () => {
         })
     }, [])
 
-    return (
-        <Row>
-            <Row>
-                <table className="table">
-                    <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">user name</th>
-                        <th scope="col"></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {
-                        state.data.map((item, idx) => {
-                            return (
-                                <tr key={'tr' + idx}>
-                                    <th key={idx + 'id' + idx} scope="row">{idx + 1}</th>
-                                    <td key={'name'  + idx}>{item.username}</td>
-                                    <td key={'* ' + idx}>
-                                        <button className={'btn btn-danger'}>delete</button>
-                                    </td>
-                                </tr>
-                            )
-                        })
-                    }
-                    </tbody>
-                </table>
-            </Row>
-        </Row>
+    const deleteUser = (name: string) => {
+        console.log(name)
+        userService.deleteUser(name).then(r => {
+            const data = state.data.filter(item => item.username !== name)
+            setState({data: data})
+            if (Auth.getCurrentUser() === name) {
+                Auth.logout(() => {
+                })
+            }
+        })
+    }
 
+    return (
+        <Col className={'col-12'}>
+            <table className="table">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>user name</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                {
+                    state.data.map((item, idx) => {
+                        return (
+                            <tr key={'tr' + idx}>
+                                <td key={idx + 'id' + idx}>{idx + 1}</td>
+                                <td key={'name' + idx}>{item.username}</td>
+                                <td key={'* ' + idx}>
+                                    <button className={'btn btn-danger'}
+                                            onClick={() => deleteUser(item.username)}>delete
+                                    </button>
+                                </td>
+                            </tr>
+                        )
+                    })
+                }
+                </tbody>
+            </table>
+        </Col>
     )
 }
 

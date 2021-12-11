@@ -1,20 +1,15 @@
 import React from "react";
 import {Col, Row} from "react-bootstrap";
-import LeftPanel from "../component/LeftPanel";
-import TopBar from "../component/TopBar";
 import OrderForm from "../component/OrderForm";
 
 const OrderPage = () => {
     return (
         <>
-            <Row>
+            <Row className={'background_page'}>
                 <Col className={'col-2'}>
-                    <LeftPanel/>
+                    <img src={'Logo-HHEC-250.png'} alt={'logo'} width={'200'} className={'order_page_logo'}/>
                 </Col>
                 <Col className={'col-10'}>
-                    <Row>
-                        <TopBar/>
-                    </Row>
                     <Row>
                         <OrderForm/>
                     </Row>

@@ -2,7 +2,6 @@ import LoginBody from "../model/login-body";
 import axios from "axios";
 import Url from "./Url";
 import LoginResponse from "../model/login-response";
-import {useNavigate} from "react-router-dom";
 
 class Auth {
 
@@ -12,6 +11,7 @@ class Auth {
         axios.post<LoginResponse>(Url.login, body).then((response) => {
             localStorage.setItem('id', String(response.data.id))
             localStorage.setItem('loggedIn', 'true')
+            localStorage.setItem('name', String(response.data.name))
             callback()
         }).catch(e => {
             localStorage.clear()
@@ -28,6 +28,10 @@ class Auth {
 
     isLoggedIn = () => {
         return localStorage.getItem('loggedIn') === 'true'
+    }
+
+    getCurrentUser = () => {
+        return localStorage.getItem('name')
     }
 }
 

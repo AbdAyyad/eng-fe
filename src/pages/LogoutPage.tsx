@@ -15,7 +15,7 @@ export const LogoutPage = () => {
     return (
         <>
             <Container>
-                <Row>
+                <Row className={'background_page'}>
                     <Col className={'md-2'}/>
                     <Col className={'md-8'}>
                         <Row>

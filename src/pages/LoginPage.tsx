@@ -23,7 +23,7 @@ export const LoginPage = () => {
             password: html.password.value
         }
         Auth.login(loginBody, () => {
-            navigate('/dashboard')
+            navigate('/home')
             console.log('status ', !Auth.isLoggedIn())
             setState({
                 showError: !Auth.isLoggedIn()
@@ -41,29 +41,34 @@ export const LoginPage = () => {
     return (
         <>
             <Container>
-                <Row>
-                    <Col className={'md-2'}/>
-                    <Col className={'md-8'}>
+                <Row id={'login_page'}>
+                    <Col className={'col-1'}/>
+                    <Col className={'col-9'}>
                         <Row>
-                            <img src={'/Logo-HHEC-250.png'} alt={'logo'}/>
-                            <Form onSubmit={handleSubmit}>
-                                <Form.Group className="mb-3" controlId="formBasicEmail">
-                                    <Form.Label>Username</Form.Label>
-                                    <Form.Control type="text" placeholder="Enter username" name='username' required/>
-                                </Form.Group>
+                            <Row>
+                                <img src={'/Logo-HHEC-250.png'} alt={'logo'} width={'250px'} id={'logo'}/>
+                            </Row>
+                            <Row>
+                                <Form onSubmit={handleSubmit}>
+                                    <Form.Group className="mb-3 flex" controlId="formBasicEmail">
+                                        <Form.Label className={'form_label'}>Username</Form.Label>
+                                        <Form.Control type="text" className={'login-form'} name='username'
+                                                      required/>
+                                    </Form.Group>
 
-                                <Form.Group className="mb-3" controlId="formBasicPassword">
-                                    <Form.Label>Password</Form.Label>
-                                    <Form.Control type="password" placeholder="Password" name='password' required/>
-                                </Form.Group>
-                                <Button variant="primary" type="submit">
-                                    Login
-                                </Button>
-                            </Form>
-                            {state.showError ? <h3>login failed</h3> : null}
+                                    <Form.Group className="mb-3 flex" controlId="formBasicPassword">
+                                        <Form.Label className={'form_label'}>Password</Form.Label>
+                                        <Form.Control type="password" className={'login-form'}  name='password' required/>
+                                    </Form.Group>
+                                    <Button variant="primary" type="submit" id={'login_button'}>
+                                        Login
+                                    </Button>
+                                </Form>
+                                {state.showError ? <h3>login failed</h3> : null}
+                            </Row>
                         </Row>
                     </Col>
-                    <Col className={'md-2'}/>
+                    <Col className={'col-2'}/>
                 </Row>
             </Container>
         </>

@@ -38,8 +38,7 @@
 }
 
 .background {
-    background-color: #c6c8cc;
-    height: 945px;
+    margin-left: 135px !important;
 }
 
 .link {
@@ -48,15 +47,18 @@
 }
 
 h4 {
-    margin-left: 15px;
+    text-align: center !important;
+    color: white !important;
+    padding-top: 25px;
 }
 
-table {
-    margin-top: 15px;
+.table {
+    /*margin-left:20px;*/
+    margin-top: 30px;
 }
 
-.top-15 {
-    margin-top: 15px;
+.top-50 {
+    margin-top: 50px;
 }
 
 a {
@@ -64,7 +66,7 @@ a {
 }
 
 .excel {
-    color : #198754;
+    color: #198754;
 }
 
 .excel:hover {
@@ -74,4 +76,138 @@ a {
 #excel_btn {
     width: 120px;
     margin-left: 45px;
+}
+
+#sidebar {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 475px;
+    background-color: #89caf5 !important;
+}
+
+#login_page {
+    background-image: url(http://localhost:3000/Home_Page.jpg);
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    position: absolute;
+}
+
+.background_page {
+    background-image: url(http://localhost:3000/Background.jpg) !important;
+    top: 0 !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    position: absolute !important;
+    max-width: 100%;
+}
+
+
+#logo {
+    width: 250px;
+    margin-top: 10%;
+    margin-bottom: 5%;
+}
+
+.flex {
+    display: flex;
+}
+
+.form_label {
+    margin-right: 15px;
+    width: 80px;
+}
+
+.transparent_form {
+    background-color: transparent !important;
+    border: #3e87c7 2px solid !important;
+    border-radius: 10px !important;
+    margin-bottom: 25px;
+}
+
+.login-form {
+    width: 250px !important;
+    background-color: transparent !important;
+    border: #3e87c7 2px solid !important;
+    border-radius: 10px !important;
+}
+
+#login_button {
+    margin-left: 175px;
+    width: 100px;
+}
+
+#add_data {
+    width: 450px;
+    height: 85px;
+    background-image: url("http://localhost:3000/Add_data.png");
+    margin-bottom: 20px;
+}
+
+#contractors {
+    width: 450px;
+    height: 85px;
+    background-image: url("http://localhost:3000/Contractors.png");
+    margin-bottom: 20px;
+}
+
+#settings {
+    width: 450px;
+    height: 85px;
+    background-image: url("http://localhost:3000/Settings.png");
+    margin-bottom: 20px;
+}
+
+#search {
+    width: 450px;
+    height: 85px;
+    background-image: url("http://localhost:3000/Search.png");
+    margin-bottom: 20px;
+}
+
+#add_data_text {
+    padding-top: 15px;
+}
+
+.order_page_logo {
+    margin-top: 50px;
+    margin-left: 50px;
+}
+
+.order_page_btn {
+    margin-top: 50px !important;
+    width: 300px !important;
+}
+
+.form-group {
+    display: flex;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.left-15 {
+    margin-left: 15px;
+}
+
+#phone {
+    width: 100px;
+}
+
+tr {
+    width: 400px !important;
+    max-width: 400px !important;
+}
+
+td,th {
+    width: 10% !important;
+    max-width: 100px !important;
+}
+
+.bottom-25 {
+    margin-bottom: 25px;
 }

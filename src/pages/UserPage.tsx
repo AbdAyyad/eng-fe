@@ -1,19 +1,15 @@
 import React from "react";
 import {Col, Row} from "react-bootstrap";
 import LeftPanel from "../component/LeftPanel";
-import TopBar from "../component/TopBar";
 import UserDataForm from "../component/UserDataForm";
 const UserPage = () => {
     return (
         <>
-            <Row>
-                <Col className={'col-2'}>
+            <Row className={'background_page'}>
+                <Col className={'col-4'}>
                     <LeftPanel/>
                 </Col>
-                <Col className={'col-10'}>
-                    <Row>
-                        <TopBar/>
-                    </Row>
+                <Col className={'col-8'}>
                     <Row>
                         <UserDataForm/>
                     </Row>

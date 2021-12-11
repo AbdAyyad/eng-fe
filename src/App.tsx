@@ -9,6 +9,7 @@ import {LogoutPage} from "./pages/LogoutPage";
 import CreateUserPage from "./pages/CreateUserPage";
 import OrderPage from "./pages/OrderPage";
 import UserPage from "./pages/UserPage";
+import SelectionPage from "./pages/SelectionPage";
 
 
 function App() {
@@ -16,7 +17,11 @@ function App() {
     const routes = [
         {
             path: '/',
-            element: loggedIn ? <Navigate to={'/dashboard'}/> : <LoginPage/>
+            element: loggedIn ? <Navigate to={'/home'}/> : <LoginPage/>
+        },
+        {
+            path: '/home',
+            element: loggedIn ? <SelectionPage/> : <LoginPage/>
         },
         {
             path: '/dashboard',
@@ -33,6 +38,10 @@ function App() {
         {
             path: '/user',
             element: loggedIn ? <UserPage/> : <Navigate to={'/'}/>
+        },
+        {
+            path: '/category',
+            element: loggedIn ? <SelectionPage/> : <Navigate to={'/'}/>
         },
         {
             path: '/log-out',
