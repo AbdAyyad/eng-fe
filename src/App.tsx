@@ -14,6 +14,9 @@ import AddCategoryPage from "./pages/AddCategoryPage";
 import AddCatFormPage from "./pages/AddCatFormPage";
 import AddTypeFormPage from "./pages/AddTypeFormPage";
 import AddSubTypeFormPage from "./pages/AddSubTypeFormPage";
+import EditSubTypePage from "./pages/EditSubTypePage";
+import EditTypePage from "./pages/EditTypePage";
+import EditCategoryPage from "./pages/EditCategoryPage";
 
 
 function App() {
@@ -58,6 +61,18 @@ function App() {
         {
             path: '/add-subtype',
             element: loggedIn ? <AddSubTypeFormPage/> : <Navigate to={'/'}/>
+        },
+        {
+            path: '/edit-subtype',
+            element: loggedIn ? <EditSubTypePage/> : <Navigate to={'/'}/>
+        },
+        {
+            path: '/edit-type',
+            element: loggedIn ? <EditTypePage/> : <Navigate to={'/'}/>
+        },
+        {
+            path: '/edit-category',
+            element: loggedIn ? <EditCategoryPage/> : <Navigate to={'/'}/>
         },
         {
             path: '/log-out',

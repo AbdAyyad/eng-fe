@@ -1,10 +1,11 @@
 type OrderResponse = {
-    serial : string
+    serial: string
     type: string
     name: string
     role: string
     phone: string
-    notes: string
+    notes: string,
+    id: number
 }
 
 export default OrderResponse

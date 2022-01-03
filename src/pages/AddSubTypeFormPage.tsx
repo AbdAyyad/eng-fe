@@ -1,6 +1,5 @@
 import React from "react";
 import {Col, Row} from "react-bootstrap";
-import AddCatForm from "../component/AddCatForm";
 import {useNavigate} from "react-router-dom";
 import AddSubTypeForm from "../component/AddSubTypeForm";
 

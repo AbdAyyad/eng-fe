@@ -31,16 +31,16 @@ const CategoryForm = () => {
                 <Row className={'text-right'}>
                     <Col className={'col-3'}>
                         <img src={'/add.png'} className={'bottom-25'}
-                             onClick={ ()=>{
+                             onClick={() => {
                                  navigate('/add-subtype')
                              }}
                         />
                     </Col>
                     <Col className={'col-3'}>
                         <img src={'/add.png'} className={'bottom-25'}
-                        onClick={ ()=>{
-                            navigate('/add-type')
-                        }}
+                             onClick={() => {
+                                 navigate('/add-type')
+                             }}
                         />
                     </Col>
                     <Col className={'col-3'}>
@@ -52,13 +52,13 @@ const CategoryForm = () => {
                 </Row>
                 <Row className={'text-right'}>
                     <Col className={'col-3'}>
-                        <img src={'/edit.png'}/>
+                        <img src={'/edit.png'} onClick={() => navigate('/edit-subtype')}/>
                     </Col>
                     <Col className={'col-3'}>
-                        <img src={'/edit.png'}/>
+                        <img src={'/edit.png'} onClick={() => navigate('/edit-type')}/>
                     </Col>
                     <Col className={'col-3'}>
-                        <img src={'/edit.png'}/>
+                        <img src={'/edit.png'} onClick={() => navigate('/edit-category')}/>
                     </Col>
                     <Col className={'col-3'}/>
                 </Row>

@@ -1,5 +1,5 @@
 import React from "react";
-import {Button, Col, Form} from "react-bootstrap";
+import {Row, Col, Form} from "react-bootstrap";
 import TypeResponse from "../model/TypeResponse";
 import ItemsService from "../service/ItemsService";
 import {useNavigate} from "react-router-dom";
@@ -21,24 +21,32 @@ const AddCatForm = () => {
     }
     return (
         <>
-            <Col className={'3'}/>
-            <Col className={'6'}>
-                <Form onSubmit={handleSubmit} className={'top-365'}>
-                    <Form.Group className={'form-group'}>
-                        <Form.Label id={'code'}>code</Form.Label>
-                        <Form.Control type="number" className={'transparent_form '} name='code' required/>
-                    </Form.Group>
-
-                    <Form.Group className={'form-group'}>
-                        <Form.Label id={'description'}>description</Form.Label>
-                        <Form.Control type="text" className={'transparent_form '} name='description' required/>
-                    </Form.Group>
-                    <Button variant="primary" type="submit">
-                        Add Category
-                    </Button>
-                </Form>
-            </Col>
-            <Col className={'3'}/>
+            <Row>
+                <Col className={'col-3'}/>
+                <Col className={'col-6'}>
+                    <img src={'/add_cat_title.png'} className={'top-50'}/>
+                </Col>
+                <Col className={'col-3'}/>
+            </Row>
+            <Row>
+                <Col className={'col-3'}/>
+                <Col className={'col-6'}>
+                    <Form onSubmit={handleSubmit} className={'top-365'}>
+                        <Form.Group className={'form-group'}>
+                            <Form.Control type="number" className={'transparent_form '} name='code' required/>
+                            <Form.Label className={'top-10'}>:الرقم المتسلسل</Form.Label>
+                        </Form.Group>
+                        <Form.Group className={'form-group'}>
+                            <Form.Control type="text" className={'transparent_form '} name='description' required/>
+                            <Form.Label className={'top-10'}>: الاسم</Form.Label>
+                        </Form.Group>
+                        <button type="submit" id={'edit-btn'}>
+                            <img src={'/add_cat_button.png'}/>
+                        </button>
+                    </Form>
+                </Col>
+                <Col className={'col-3'}/>
+            </Row>
         </>
     )
 }

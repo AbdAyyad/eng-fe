@@ -1,18 +1,21 @@
 import React, {useEffect, useState} from "react";
-import {Button, Col, Form, Row} from "react-bootstrap";
+import {Col, Form, Row} from "react-bootstrap";
 import TypeResponse from "../model/TypeResponse";
 import ItemsService from "../service/ItemsService";
 import {useNavigate} from "react-router-dom";
 
-const AddSubTypeForm = () => {
+const EditTypeForm = () => {
     const navigate = useNavigate()
     const itemService = new ItemsService()
-
-    const [typeState, setTypeState] = useState<{ data: [TypeResponse], selected: number }>()
+    const [state, setState] = useState<{ data: [TypeResponse], selected: number, text: string }>()
 
     useEffect(() => {
         itemService.getTypes().then(r => {
-            setTypeState({data: r.data, selected: 0})
+            setState({
+                data: r.data,
+                selected: 0,
+                text: ''
+            })
         })
     }, [])
 
@@ -26,20 +29,27 @@ const AddSubTypeForm = () => {
             // @ts-ignore
             description: html.description.value
         }
-        itemService.postSubTypes(String(typeState?.selected!!), request).then(r => navigate('/'))
+        itemService.patchTypes(state?.selected!!, request).then(r => navigate('/'))
     }
 
-    const onChangeHandler = (e: any) => {
-        itemService.getSubTypes(e.target.value).then(r => {
-            setTypeState({data: typeState?.data!!, selected: +e.target.value})
+    const onChangeSerial = (e: any) => {
+        const code = +e.target.value;
+        const item = state?.data.filter(item => item.code === code)[0]
+
+        setState({
+            data: state?.data!!,
+            selected: +e.target.value,
+            // @ts-ignore
+            text: item.description
         })
     }
+
     return (
         <>
             <Row>
                 <Col className={'col-3'}/>
                 <Col className={'col-6'}>
-                    <img src={'/add_sub_type_title.png'} className={'top-50'}/>
+                    <img src={'/edit_type_title.png'} className={'top-50'}/>
                 </Col>
                 <Col className={'col-3'}/>
             </Row>
@@ -48,29 +58,30 @@ const AddSubTypeForm = () => {
                 <Col className={'col-6'}>
                     <Form onSubmit={handleSubmit} className={'top-365'}>
                         <Form.Group className={'form-group'}>
-                            <Form.Select className={'transparent_form'} onChange={onChangeHandler}>
+                            <Form.Select className={'transparent_form'} onChange={onChangeSerial}>
                                 <option></option>
                                 {
-                                    typeState?.data.map(entry => {
+                                    state?.data.map(entry => {
                                         return <option value={entry.code}
-                                                       key={'type ' + entry.code}>{entry.description}</option>
+                                                       key={'subType ' + entry.code}>{entry.description}</option>
                                     })
                                 }
                             </Form.Select>
-                            <Form.Label className={'top-10'}>: البند</Form.Label>
+                            <Form.Label className={'top-10'}>:البند</Form.Label>
+                        </Form.Group>
+                        <Form.Group className={'form-group'}>
+                            <Form.Control type="number" className={'transparent_form '} name='code' required
+                                          defaultValue={state?.selected === 0 ? undefined : state?.selected}/>
+                            <Form.Label className={'top-10'}>:الرقم المتسلسل</Form.Label>
                         </Form.Group>
 
                         <Form.Group className={'form-group'}>
-                            <Form.Control type="number" className={'transparent_form '} name='code' required/>
-                            <Form.Label className={'top-10'}>: السيريال</Form.Label>
-                        </Form.Group>
-
-                        <Form.Group className={'form-group'}>
-                            <Form.Control type="text" className={'transparent_form '} name='description' required/>
-                            <Form.Label className={'top-10'}>: الوصف</Form.Label>
+                            <Form.Control type="text" className={'transparent_form '} name='description' required
+                                          defaultValue={state?.text}/>
+                            <Form.Label className={'top-10'}>:الاسم</Form.Label>
                         </Form.Group>
                         <button type="submit" id={'edit-btn'}>
-                            <img src={'/add_sub_type_button.png'}/>
+                            <img src={'/edit_type_button.png'}/>
                         </button>
                     </Form>
                 </Col>
@@ -80,4 +91,4 @@ const AddSubTypeForm = () => {
     )
 }
 
-export default AddSubTypeForm
+export default EditTypeForm

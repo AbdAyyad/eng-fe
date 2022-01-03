@@ -61,6 +61,11 @@ h4 {
     margin-top: 50px;
 }
 
+.top-10 {
+    margin-top: 10px;
+}
+
+
 a {
     text-decoration: none;
 }
@@ -203,7 +208,7 @@ tr {
     max-width: 400px !important;
 }
 
-td,th {
+td, th {
     width: 10% !important;
     max-width: 100px !important;
 }
@@ -226,4 +231,23 @@ td,th {
 
 .edit-btn {
     background-color: #309de9 !important;
+}
+
+label {
+    white-space: nowrap;
+}
+
+#edit-btn {
+    border: hidden;
+    background-color: transparent;
+}
+
+.top-100 {
+    margin-top: 100px !important;
+}
+
+.dashboard-input {
+    width: 100px !important;
+    background-color: transparent;
+    border: hidden;
 }
