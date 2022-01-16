@@ -6,6 +6,10 @@ type OrderRequest = {
     address: string;
     phone: string;
     notes: string;
+    company: string;
+    company_cat: string;
+    email: string;
+    sec_phone: string;
 }
 
 export default OrderRequest

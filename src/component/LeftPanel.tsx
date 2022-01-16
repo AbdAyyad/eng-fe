@@ -14,31 +14,31 @@ const LeftPanel = () => {
 
                     <li className={'nav-item'} id={'add_data'}>
                         <NavLink to={'/new-order'} className={'nav-link'}>
-                            <h4 id={'add_data_text'}>إدخال بيانات</h4>
+                            <h4 id={'add_data_text'}>Add data</h4>
                         </NavLink>
                     </li>
 
                     <li className={'nav-item'} id={'contractors'}>
                         <NavLink to={'/dashboard'} className={'nav-link'}>
-                            <h4>شجرة اسماء الموردين</h4>
+                            <h4>Contractors list</h4>
                         </NavLink>
                     </li>
 
                     <li className={'nav-item'} id={'settings'}>
                         <NavLink to={'/user'} className={'nav-link'}>
-                            <h4>الإعدادات</h4>
+                            <h4>Settings</h4>
                         </NavLink>
                     </li>
 
                     <li className={'nav-item'} id={'add_data'}>
                         <NavLink to={'/category'} className={'nav-link'}>
-                            <h4>إضافة و تعديل التصنيفات</h4>
+                            <h4>Add & Edit Category</h4>
                         </NavLink>
                     </li>
 
                     <li className={'nav-item'} id={'search'}>
                         <NavLink className={'nav-link'} to={'/'}>
-                            <h4>بحث</h4>
+                            <h4>Search</h4>
                         </NavLink>
                     </li>
                 </ul>

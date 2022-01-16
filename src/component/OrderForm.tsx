@@ -60,7 +60,15 @@ const OrderForm = () => {
             category_code: catState?.selected!!,
             item_code: subTypeState?.selected!!,
             // @ts-ignore
-            notes: html.notes.value
+            notes: html.notes.value,
+            // @ts-ignore
+            company: html.company.value,
+            // @ts-ignore
+            company_cat: html.company_cat.value,
+            // @ts-ignore
+            email: html.email.value,
+            // @ts-ignore
+            sec_phone: html.sec_phone.value
         }
         console.log(request)
         itemService.postOrder(request).then(r => navigate('/'))
@@ -73,31 +81,32 @@ const OrderForm = () => {
                     <Col className={'col-4'}/>
                     <Col className={'col-4'}>
                         <Button variant="primary" type="submit" className={'order_page_btn'}>
-                            إدخال بيانات
+                            New Data
                         </Button>
                     </Col>
                     <Col className={'col-4'}/>
                 </Row>
                 <Row>
-                    <Col className={'col-4 text-right'}>
-                        <Form.Label className={'top-50'}>:البند الفرعي</Form.Label>
+                    <Col className={'col-4 text-left'}>
+                        <Form.Label className={'top-50'}>Category:</Form.Label>
                     </Col>
-                    <Col className={'col-4 text-right'}>
-                        <Form.Label className={'top-50'}>:البند</Form.Label>
+                    <Col className={'col-4 text-left'}>
+                        <Form.Label className={'top-50'}>Item:</Form.Label>
                     </Col>
-                    <Col className={'col-4 text-right'}>
-                        <Form.Label className={'top-50'}>:التصنيف</Form.Label>
+                    <Col className={'col-4 text-left'}>
+                        <Form.Label className={'top-50'}>Sub-item:</Form.Label>
                     </Col>
                 </Row>
 
                 <Row>
                     <Col className={'col-4'}>
-                        <Form.Select className={'transparent_form'} onChange={onChangeSerial}>
+                        <Form.Select className={'transparent_form'} onChange={onChangeCat}>
                             <option></option>
                             {
-                                subTypeState?.data.map(entry => {
+
+                                catState?.data.map(entry => {
                                     return <option value={entry.code}
-                                                   key={'subType ' + entry.code}>{entry.description}</option>
+                                                   key={'cat ' + entry.code}>{entry.description}</option>
                                 })
                             }
                         </Form.Select>
@@ -113,43 +122,34 @@ const OrderForm = () => {
                             }
                         </Form.Select></Col>
                     <Col className={'col-4'}>
-                        <Form.Select className={'transparent_form'} onChange={onChangeCat}>
+                        <Form.Select className={'transparent_form'} onChange={onChangeSerial}>
                             <option></option>
                             {
-                                catState?.data.map(entry => {
+                                subTypeState?.data.map(entry => {
                                     return <option value={entry.code}
-                                                   key={'cat ' + entry.code}>{entry.description}</option>
+                                                   key={'subType ' + entry.code}>{entry.description}</option>
                                 })
                             }
                         </Form.Select>
                     </Col>
                 </Row>
 
-
-                <Form.Group className="form-group text-right">
-                    <Form.Control className={'transparent_form'}
-                                  type="text"
-                                  disabled
-                                  name='serial'
-                                  value={serial}
-                    />
-                    <Form.Label className={'left-15'}>:السيريال</Form.Label>
-                </Form.Group>
-
                 <Row>
                     <Col className={'col-6'}>
                         <Form.Group className="form-group">
+                            <Form.Label className={'right-15'}>Company:</Form.Label>
                             <Form.Control className={'transparent_form'} type="text"
-                                          name='role'
+                                          name='company'
                                           required/>
-                            <Form.Label className={'left-15'}>:المهنة</Form.Label>
                         </Form.Group>
                     </Col>
 
                     <Col className={'col-6'}><Form.Group className="form-group">
-                        <Form.Control className={'transparent_form'} type="text" name='name'
+                        <Form.Label className={'right-15'}>Company Catg:</Form.Label>
+                        <Form.Control className={'transparent_form'}
+                                      type="text"
+                                      name='company_cat'
                                       required/>
-                        <Form.Label className={'left-15'}>:الاسم</Form.Label>
                     </Form.Group>
                     </Col>
                 </Row>
@@ -157,23 +157,67 @@ const OrderForm = () => {
                 <Row>
                     <Col className={'col-6'}>
                         <Form.Group className="form-group">
+                            <Form.Label className={'right-15'}>Number:</Form.Label>
+                            <Form.Control className={'transparent_form'}
+                                          type="number"
+                                          name='phone'
+                                          required/>
+                        </Form.Group>
+                    </Col>
+
+                    <Col className={'col-6'}>
+                        <Form.Group className="form-group">
+                            <Form.Label className={'right-15'}>Email:</Form.Label>
+                            <Form.Control className={'transparent_form'}
+                                      type="email"
+                                      name='email'
+                                      required/>
+                    </Form.Group>
+                    </Col>
+                </Row>
+
+                <Row>
+                    <Col className={'col-6'}>
+                        <Form.Group className="form-group">
+                            <Form.Label className={'right-15'}>Name:</Form.Label>
+                            <Form.Control className={'transparent_form'}
+                                          type="text"
+                                          name='name'
+                                          required/>
+                        </Form.Group>
+                    </Col>
+
+                    <Col className={'col-6'}>
+                        <Form.Group className="form-group">
+                            <Form.Label className={'right-15'}>role:</Form.Label>
+                            <Form.Control className={'transparent_form'}
+                                          type="text"
+                                          name='role'
+                                          required/>
+                        </Form.Group>
+                    </Col>
+                </Row>
+
+                <Row>
+                    <Col className={'col-6'}>
+                        <Form.Group className="form-group">
+                            <Form.Label className={'right-15'}>Address:</Form.Label>
                             <Form.Control className={'transparent_form'} type="text" name='address'
                                           required/>
-                            <Form.Label className={'left-15'}>:العنوان</Form.Label>
                         </Form.Group>
                     </Col>
                     <Col className={'col-6'}>
                         <Form.Group className="form-group">
-                            <Form.Control className={'transparent_form'} type="number" name='phone'
+                            <Form.Label className={'right-15'} id={'phone'}>Mob.number:</Form.Label>
+                            <Form.Control className={'transparent_form'} type="number" name='sec_phone'
                                           required/>
-                            <Form.Label className={'left-15'} id={'phone'}>:رقم التلفون</Form.Label>
                         </Form.Group>
                     </Col>
                 </Row>
 
                 <Form.Group className="form-group">
+                    <Form.Label className={'right-15'}>Notes :</Form.Label>
                     <textarea className={'transparent_form'} cols={200} rows={5} name='notes'></textarea>
-                    <Form.Label className={'left-15'}>:الملاحظات</Form.Label>
                 </Form.Group>
 
             </Form>

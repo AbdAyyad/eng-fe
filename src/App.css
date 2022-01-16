@@ -195,9 +195,19 @@ a {
     text-align: right;
 }
 
+.text-left {
+    text-align: left;
+}
+
+
 .left-15 {
     margin-left: 15px;
 }
+
+.right-15 {
+    margin-right: 15px;
+}
+
 
 #phone {
     width: 100px;
