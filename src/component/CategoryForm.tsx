@@ -16,23 +16,23 @@ const CategoryForm = () => {
                     </Col>
                     <Col className={'col-4'}/>
                 </Row>
-                <Row className={'text-right'}>
-                    <Col className={'col-3 text-right'}>
-                        <Form.Label className={'top-50'}>:البند الفرعي</Form.Label>
+                <Row className={''}>
+                    <Col className={'col-3 '}>
+                        <Form.Label className={'top-50'}>Category:</Form.Label>
                     </Col>
-                    <Col className={'col-3 text-right'}>
-                        <Form.Label className={'top-50'}>:البند</Form.Label>
+                    <Col className={'col-3 '}>
+                        <Form.Label className={'top-50'}>Item:</Form.Label>
                     </Col>
-                    <Col className={'col-3 text-right'}>
-                        <Form.Label className={'top-50'}>:التصنيف</Form.Label>
+                    <Col className={'col-3 '}>
+                        <Form.Label className={'top-50'}>Sub-item:</Form.Label>
                     </Col>
                     <Col className={'col-3'}/>
                 </Row>
-                <Row className={'text-right'}>
+                <Row className={''}>
                     <Col className={'col-3'}>
                         <img src={'/add.png'} className={'bottom-25'}
                              onClick={() => {
-                                 navigate('/add-subtype')
+                                 navigate('/add-category')
                              }}
                         />
                     </Col>
@@ -45,20 +45,20 @@ const CategoryForm = () => {
                     </Col>
                     <Col className={'col-3'}>
                         <img src={'/add.png'} className={'bottom-25'} onClick={() => {
-                            navigate('/add-category')
+                            navigate('/add-subtype')
                         }}/>
                     </Col>
                     <Col className={'col-3'}/>
                 </Row>
-                <Row className={'text-right'}>
+                <Row className={''}>
                     <Col className={'col-3'}>
-                        <img src={'/edit.png'} onClick={() => navigate('/edit-subtype')}/>
+                        <img src={'/edit.png'} onClick={() => navigate('/edit-category')}/>
                     </Col>
                     <Col className={'col-3'}>
                         <img src={'/edit.png'} onClick={() => navigate('/edit-type')}/>
                     </Col>
                     <Col className={'col-3'}>
-                        <img src={'/edit.png'} onClick={() => navigate('/edit-category')}/>
+                        <img src={'/edit.png'} onClick={() => navigate('/edit-subtype')}/>
                     </Col>
                     <Col className={'col-3'}/>
                 </Row>

@@ -58,6 +58,7 @@ const EditTypeForm = () => {
                 <Col className={'col-6'}>
                     <Form onSubmit={handleSubmit} className={'top-365'}>
                         <Form.Group className={'form-group'}>
+                            <Form.Label className={'top-10 right-15'}>type:</Form.Label>
                             <Form.Select className={'transparent_form'} onChange={onChangeSerial}>
                                 <option></option>
                                 {
@@ -67,18 +68,17 @@ const EditTypeForm = () => {
                                     })
                                 }
                             </Form.Select>
-                            <Form.Label className={'top-10'}>:البند</Form.Label>
                         </Form.Group>
                         <Form.Group className={'form-group'}>
+                            <Form.Label className={'top-10 right-15'}>number:</Form.Label>
                             <Form.Control type="number" className={'transparent_form '} name='code' required
                                           defaultValue={state?.selected === 0 ? undefined : state?.selected}/>
-                            <Form.Label className={'top-10'}>:الرقم المتسلسل</Form.Label>
                         </Form.Group>
 
                         <Form.Group className={'form-group'}>
+                            <Form.Label className={'top-10 right-15'}>name:</Form.Label>
                             <Form.Control type="text" className={'transparent_form '} name='description' required
                                           defaultValue={state?.text}/>
-                            <Form.Label className={'top-10'}>:الاسم</Form.Label>
                         </Form.Group>
                         <button type="submit" id={'edit-btn'}>
                             <img src={'/edit_type_button.png'}/>

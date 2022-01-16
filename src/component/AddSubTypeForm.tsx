@@ -48,6 +48,7 @@ const AddSubTypeForm = () => {
                 <Col className={'col-6'}>
                     <Form onSubmit={handleSubmit} className={'top-365'}>
                         <Form.Group className={'form-group'}>
+                            <Form.Label className={'top-10 right-15'}>category:</Form.Label>
                             <Form.Select className={'transparent_form'} onChange={onChangeHandler}>
                                 <option></option>
                                 {
@@ -57,17 +58,16 @@ const AddSubTypeForm = () => {
                                     })
                                 }
                             </Form.Select>
-                            <Form.Label className={'top-10'}>: البند</Form.Label>
                         </Form.Group>
 
                         <Form.Group className={'form-group'}>
+                            <Form.Label className={'top-10 right-15'}>number:</Form.Label>
                             <Form.Control type="number" className={'transparent_form '} name='code' required/>
-                            <Form.Label className={'top-10'}>: السيريال</Form.Label>
                         </Form.Group>
 
                         <Form.Group className={'form-group'}>
+                            <Form.Label className={'top-10 right-15'}>description:</Form.Label>
                             <Form.Control type="text" className={'transparent_form '} name='description' required/>
-                            <Form.Label className={'top-10'}>: الوصف</Form.Label>
                         </Form.Group>
                         <button type="submit" id={'edit-btn'}>
                             <img src={'/add_sub_type_button.png'}/>

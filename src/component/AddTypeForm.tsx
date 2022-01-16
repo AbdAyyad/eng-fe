@@ -33,13 +33,13 @@ const AddTypeForm = () => {
                 <Col className={'col-6'}>
                     <Form onSubmit={handleSubmit} className={'top-365'}>
                         <Form.Group className={'form-group'}>
+                            <Form.Label className={'top-10 right-15'}>number:</Form.Label>
                             <Form.Control type="number" className={'transparent_form '} name='code' required/>
-                            <Form.Label className={'top-10'}>: الرقم المتسلسل</Form.Label>
                         </Form.Group>
 
                         <Form.Group className={'form-group'}>
+                            <Form.Label className={'top-10 right-15'}>name</Form.Label>
                             <Form.Control type="text" className={'transparent_form '} name='description' required/>
-                            <Form.Label className={'top-10'}>: الاسم</Form.Label>
                         </Form.Group>
                         <Button type="submit" id={'edit-btn'}>
                             <img src={'/add_type_button.png'}/>

@@ -81,6 +81,7 @@ const EditSubTypeForm = () => {
                 <Col className={'col-6'}>
                     <Form onSubmit={handleSubmit} className={'top-365'}>
                         <Form.Group className={'form-group'}>
+                            <Form.Label className={'top-10 right-15'}>type:</Form.Label>
                             <Form.Select className={'transparent_form'} onChange={onChangeType}>
                                 <option></option>
                                 {
@@ -90,9 +91,9 @@ const EditSubTypeForm = () => {
                                     })
                                 }
                             </Form.Select>
-                            <Form.Label className={'top-10'}>: البند</Form.Label>
                         </Form.Group>
                         <Form.Group className={'form-group'}>
+                            <Form.Label className={'top-10 right-15'}>subtype:</Form.Label>
                             <Form.Select className={'transparent_form'} onChange={onChangeSubType}>
                                 <option></option>
                                 {
@@ -102,18 +103,17 @@ const EditSubTypeForm = () => {
                                     })
                                 }
                             </Form.Select>
-                            <Form.Label className={'top-10'}>:البند الفرعي</Form.Label>
                         </Form.Group>
                         <Form.Group className={'form-group'}>
+                            <Form.Label className={'top-10 right-15'}>number:</Form.Label>
                             <Form.Control type="number" className={'transparent_form '} name='code' required
                                           defaultValue={subTypeState?.selected === 0 ? undefined : subTypeState?.selected}/>
-                            <Form.Label className={'top-10'}>:الرقم المتسلسل</Form.Label>
                         </Form.Group>
 
                         <Form.Group className={'form-group'}>
+                            <Form.Label className={'top-10 right-15'}>name:</Form.Label>
                             <Form.Control type="text" className={'transparent_form '} name='description' required
                                           defaultValue={subTypeState?.text}/>
-                            <Form.Label className={'top-10'}>:الاسم</Form.Label>
                         </Form.Group>
                         <button type="submit" id={'edit-btn'}>
                             <img src={'/edit_sub_type_button.png'}/>
