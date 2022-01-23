@@ -11,7 +11,7 @@ const CategoryForm = () => {
                     <Col className={'col-4'}/>
                     <Col className={'col-4'}>
                         <Button variant="primary" type="submit" className={'order_page_btn'}>
-                            إضافة و تعديل القائمة
+                            Edit list
                         </Button>
                     </Col>
                     <Col className={'col-4'}/>

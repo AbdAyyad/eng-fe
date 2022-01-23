@@ -243,6 +243,11 @@ td, th {
     background-color: #309de9 !important;
 }
 
+.delete-btn {
+    background-color: red !important;
+}
+
+
 label {
     white-space: nowrap;
 }
@@ -260,4 +265,8 @@ label {
     width: 100px !important;
     background-color: transparent;
     border: hidden;
+}
+
+.height-40 {
+    height : 40px;
 }

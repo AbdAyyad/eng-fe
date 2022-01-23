@@ -9,6 +9,7 @@ class Url {
     public static category = this.api + '/category'
     public static type = this.api + '/type'
     public static item = this.api + '/item'
+    public static search = this.api + '/search'
 }
 
 export default Url

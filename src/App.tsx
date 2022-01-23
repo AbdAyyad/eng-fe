@@ -17,6 +17,7 @@ import AddSubTypeFormPage from "./pages/AddSubTypeFormPage";
 import EditSubTypePage from "./pages/EditSubTypePage";
 import EditTypePage from "./pages/EditTypePage";
 import EditCategoryPage from "./pages/EditCategoryPage";
+import SearchPage from "./pages/SearchPage";
 
 
 function App() {
@@ -73,6 +74,10 @@ function App() {
         {
             path: '/edit-category',
             element: loggedIn ? <EditCategoryPage/> : <Navigate to={'/'}/>
+        },
+        {
+            path: '/search',
+            element: loggedIn ? <SearchPage/> : <Navigate to={'/'}/>
         },
         {
             path: '/log-out',

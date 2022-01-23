@@ -37,7 +37,7 @@ const LeftPanel = () => {
                     </li>
 
                     <li className={'nav-item'} id={'search'}>
-                        <NavLink className={'nav-link'} to={'/'}>
+                        <NavLink className={'nav-link'} to={'/search'}>
                             <h4>Search</h4>
                         </NavLink>
                     </li>

@@ -61,6 +61,14 @@ class ItemsService {
     patchOrder = (body: UpdateOrderRequest) => {
         return axios.patch(Url.order, body)
     }
+
+    deleteOrder = (id: number) => {
+        return axios.delete(`${Url.order}/${id}`)
+    }
+
+    search = (text : string) => {
+        return axios.get<[OrderResponse]>(`${Url.search}?keyword=${text}`)
+    }
 }
 
 export default ItemsService

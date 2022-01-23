@@ -3,9 +3,10 @@ import ItemsService from "../service/ItemsService";
 import {Col, Row, Form, Button} from "react-bootstrap";
 import Url from "../service/Url";
 import { useReactToPrint } from 'react-to-print';
+import TypeResponse from "../model/TypeResponse";
 
 
-const DashboardTableComponent = () => {
+const SearchComponent = () => {
     const componentRef = useRef(null);
     const handlePrint = useReactToPrint({
         content: () => componentRef.current,
@@ -130,9 +131,35 @@ const DashboardTableComponent = () => {
         })
     }
 
+    const handleSubmit = (event: any) => {
+        event.preventDefault();
+        const html = event.target as HTMLInputElement
+
+        // @ts-ignore
+        itemService.search(html.search.value).then(r => {
+            setState({
+                data: r.data,
+                filters: state.filters
+            })
+        })
+    }
+
+
     return (
         <Row ref={componentRef}>
             <Row className={'top-100'}>
+                <Col className={'col-3'}/>
+                <Col className={'col-6'}>
+                    <Form onSubmit={handleSubmit}>
+                        <Form.Group className={'form-group'}>
+                            <Form.Control type={'text'} className={'transparent_form'} name={'search'} placeholder={'search'} required/>
+                            <Button type={'submit'} className={'btn btn-primary left-15 height-40'}>search</Button>
+                        </Form.Group>
+                    </Form>
+                </Col>
+                <Col className={'col-3'}/>
+            </Row>
+            <Row >
                 <Col className={'col-1'}/>
                 <Col className={'col-3'}>
                     <Form.Select className={'top-15'}
@@ -233,4 +260,4 @@ const DashboardTableComponent = () => {
     )
 }
 
-export default DashboardTableComponent
+export default SearchComponent
