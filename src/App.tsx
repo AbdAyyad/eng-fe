@@ -22,6 +22,8 @@ import SearchPage from "./pages/SearchPage";
 
 function App() {
     const loggedIn = Auth.isLoggedIn()
+    const admin = Auth.isAdmin()
+
     const routes = [
         {
             path: '/',
@@ -37,43 +39,43 @@ function App() {
         },
         {
             path: '/create-user',
-            element: loggedIn ? <CreateUserPage/> : <Navigate to={'/'}/>
+            element: loggedIn && admin ? <CreateUserPage/> : <Navigate to={'/'}/>
         },
         {
             path: '/new-order',
-            element: loggedIn ? <OrderPage/> : <Navigate to={'/'}/>
+            element: loggedIn && admin ? <OrderPage/> : <Navigate to={'/'}/>
         },
         {
             path: '/user',
-            element: loggedIn ? <UserPage/> : <Navigate to={'/'}/>
+            element: loggedIn && admin ? <UserPage/> : <Navigate to={'/'}/>
         },
         {
             path: '/category',
-            element: loggedIn ? <AddCategoryPage/> : <Navigate to={'/'}/>
+            element: loggedIn && admin ? <AddCategoryPage/> : <Navigate to={'/'}/>
         },
         {
             path: '/add-category',
-            element: loggedIn ? <AddCatFormPage/> : <Navigate to={'/'}/>
+            element: loggedIn && admin? <AddCatFormPage/> : <Navigate to={'/'}/>
         },
         {
             path: '/add-type',
-            element: loggedIn ? <AddTypeFormPage/> : <Navigate to={'/'}/>
+            element: loggedIn && admin? <AddTypeFormPage/> : <Navigate to={'/'}/>
         },
         {
             path: '/add-subtype',
-            element: loggedIn ? <AddSubTypeFormPage/> : <Navigate to={'/'}/>
+            element: loggedIn && admin? <AddSubTypeFormPage/> : <Navigate to={'/'}/>
         },
         {
             path: '/edit-subtype',
-            element: loggedIn ? <EditSubTypePage/> : <Navigate to={'/'}/>
+            element: loggedIn && admin? <EditSubTypePage/> : <Navigate to={'/'}/>
         },
         {
             path: '/edit-type',
-            element: loggedIn ? <EditTypePage/> : <Navigate to={'/'}/>
+            element: loggedIn && admin? <EditTypePage/> : <Navigate to={'/'}/>
         },
         {
             path: '/edit-category',
-            element: loggedIn ? <EditCategoryPage/> : <Navigate to={'/'}/>
+            element: loggedIn && admin? <EditCategoryPage/> : <Navigate to={'/'}/>
         },
         {
             path: '/search',

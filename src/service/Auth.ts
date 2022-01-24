@@ -7,12 +7,15 @@ class Auth {
 
     login = (body: LoginBody, callback: () => void, error: () => void) => {
         console.log(Url.login)
-        console.log(body)
         axios.post<LoginResponse>(Url.login, body).then((response) => {
+            console.log(response.data)
             localStorage.setItem('id', String(response.data.id))
-            localStorage.setItem('loggedIn', 'true')
+            localStorage.setItem('loggedIn', String(response.data.status))
             localStorage.setItem('name', String(response.data.name))
-            callback()
+            localStorage.setItem('isAdmin', String(response.data.permission === "admin"))
+            if(response.data.status){
+                callback()
+            }
         }).catch(e => {
             localStorage.clear()
             localStorage.setItem('loggedIn', 'false')
@@ -28,6 +31,10 @@ class Auth {
 
     isLoggedIn = () => {
         return localStorage.getItem('loggedIn') === 'true'
+    }
+
+    isAdmin = () => {
+        return localStorage.getItem('isAdmin') === 'true'
     }
 
     getCurrentUser = () => {

@@ -10,6 +10,10 @@ class UserService {
     deleteUser = (name: string) => {
         return axios.delete(`${Url.user}/${name}`)
     }
+
+    resetPassword = (user: UserResponse) => {
+        return axios.patch<UserResponse>(`${Url.user}`, user)
+    }
 }
 
 export default UserService

@@ -1,7 +1,6 @@
 import React from 'react'
 import {Col, Row} from "react-bootstrap";
 import LeftPanel from "../component/LeftPanel";
-import DashboardTableComponent from "../component/DashboardTableComponent";
 import SearchComponent from "../component/SearchComponent";
 
 const SearchPage = () => {

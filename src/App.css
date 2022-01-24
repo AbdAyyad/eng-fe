@@ -71,11 +71,13 @@ a {
 }
 
 .excel {
-    color: #198754;
+    color: #198754 !important;
+    background-color: transparent !important;
 }
 
 .excel:hover {
-    color: white;
+    color: white !important;
+    background-color: #198754 !important;
 }
 
 #excel_btn {

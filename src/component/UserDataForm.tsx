@@ -1,15 +1,17 @@
 import React, {useEffect, useState} from "react";
 import UserService from "../service/UserService";
-import {Button, Col, Row} from "react-bootstrap";
+import {Button, Col, Row, Form} from "react-bootstrap";
 import Auth from "../service/Auth";
-import {Navigate, NavLink} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 
 
 const UserDataForm = () => {
     const [state, setState] = useState({
         data: [{
             id: 0,
-            username: ''
+            username: '',
+            password: '',
+            permission: ''
         }]
     })
 
@@ -35,6 +37,25 @@ const UserDataForm = () => {
         })
     }
 
+    const onChangePassword = (id: number, event: any) => {
+        const idx = state.data.findIndex(item => item.id === id)
+        const list = state.data.filter(item => item.id !== id)
+        const item = state.data.filter(item => item.id === id)[0]
+        item.password = event.target.value
+        list.splice(idx, 0, item)
+        // setState({
+        //     data: list,
+        //     filters: state.filters
+        // })
+        state.data = list
+    }
+
+    const onResetPassword = (id: number) => {
+        const user = state.data.filter(item => item.id === id)[0]
+        userService.resetPassword(user).then(r => {
+        })
+    }
+
     return (
         <Row className={'top-50'}>
             <Row>
@@ -56,6 +77,7 @@ const UserDataForm = () => {
                             <th>#</th>
                             <th>user name</th>
                             <th></th>
+                            <th></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -65,6 +87,15 @@ const UserDataForm = () => {
                                     <tr key={'tr' + idx}>
                                         <td key={idx + 'id' + idx}>{idx + 1}</td>
                                         <td key={'name' + idx}>{item.username}</td>
+                                        <td key={'reset' + idx}>
+                                            <Form.Control
+                                                type={'password'}
+                                                onChange={(event) => onChangePassword(item.id, event)}
+                                            />
+                                            <button className={'btn btn-primary'}
+                                                    onClick={() => onResetPassword(item.id)}>reset password
+                                            </button>
+                                        </td>
                                         <td key={'* ' + idx}>
                                             <button className={'btn btn-danger'}
                                                     onClick={() => deleteUser(item.username)}>delete

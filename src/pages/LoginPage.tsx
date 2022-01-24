@@ -17,10 +17,12 @@ export const LoginPage = () => {
         // @ts-ignore
         console.log(html.password.value);
         const loginBody: LoginBody = {
+            id: 0,
             // @ts-ignore
             username: html.username.value,
             // @ts-ignore
-            password: html.password.value
+            password: html.password.value,
+            permission: 'admin'
         }
         Auth.login(loginBody, () => {
             navigate('/home')

@@ -5,6 +5,7 @@ import Url from "../service/Url";
 import {useReactToPrint} from 'react-to-print';
 import TypeResponse from "../model/TypeResponse";
 import itemsService from "../service/ItemsService";
+import Auth from "../service/Auth";
 
 
 const DashboardTableComponent = () => {
@@ -12,6 +13,9 @@ const DashboardTableComponent = () => {
     const handlePrint = useReactToPrint({
         content: () => componentRef.current,
     });
+
+    const admin = Auth.isAdmin()
+
     const itemService = new ItemsService()
     const [state, setState] = useState({
         data: [{
@@ -237,11 +241,16 @@ const DashboardTableComponent = () => {
                     </Form.Select>
                 </Col>
                 <Col className={'col-3'}>
-                    <button className={'btn btn-outline-success top-15 excel'} id={'excel_btn'}>
-                        <a href={Url.excel} className={'excel'}>
-                            Excel
-                        </a>
-                    </button>
+                    {
+                        admin ? (
+                            <a href={Url.excel}>
+                                <Button className={'btn btn-outline-success top-15 excel'} id={'excel_btn'}>
+                                    Excel
+                                </Button>
+                            </a>
+                        ) : null
+                    }
+
                     {/*<button className={'btn btn-primary top-15'} onClick={handlePrint}>*/}
                     {/*    print*/}
                     {/*</button>*/}

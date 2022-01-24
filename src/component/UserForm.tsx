@@ -15,11 +15,16 @@ const UserForm = () => {
     const handleSubmit = (event: FormEvent) => {
         event.preventDefault()
         const html = event.target
+        // @ts-ignore
+        console.log(html.permission.value)
         const loginBody: LoginBody = {
+            id: 0,
             // @ts-ignore
             username: html.username.value,
             // @ts-ignore
-            password: html.password.value
+            password: html.password.value,
+            // @ts-ignore
+            permission: html.permission.value
         }
         const config = {
             headers: {
@@ -48,6 +53,12 @@ const UserForm = () => {
                         <Form.Group className="mb-3">
                             <Form.Label>Username</Form.Label>
                             <Form.Control type="text" placeholder="Enter username" name='username' required/>
+                        </Form.Group>
+
+                        <Form.Group className="mb-3">
+                            <Form.Label>Permission</Form.Label>
+                            <Form.Check type={'radio'} label={'Admin'} value={'admin'} name={'permission'} checked={true}/>
+                            <Form.Check type={'radio'} label={'User'} value={'user'} name={'permission'}/>
                         </Form.Group>
 
                         <Form.Group className="mb-3">
