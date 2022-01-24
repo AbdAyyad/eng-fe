@@ -135,6 +135,20 @@ const OrderForm = () => {
                 </Row>
 
                 <Row>
+                    <Col className={'col-12'}>
+                        <Form.Group className="form-group text-right">
+                            <Form.Label className={'right-15'}>Serial</Form.Label>
+                            <Form.Control className={'transparent_form'}
+                                          type="text"
+                                          disabled
+                                          name='serial'
+                                          value={serial}
+                            />
+                        </Form.Group>
+                    </Col>
+                </Row>
+
+                <Row>
                     <Col className={'col-6'}>
                         <Form.Group className="form-group">
                             <Form.Label className={'right-15'}>Company:</Form.Label>
@@ -157,10 +171,10 @@ const OrderForm = () => {
                 <Row>
                     <Col className={'col-6'}>
                         <Form.Group className="form-group">
-                            <Form.Label className={'right-15'}>Number:</Form.Label>
+                            <Form.Label className={'right-15'}>Name:</Form.Label>
                             <Form.Control className={'transparent_form'}
-                                          type="number"
-                                          name='phone'
+                                          type="text"
+                                          name='name'
                                           required/>
                         </Form.Group>
                     </Col>
@@ -179,21 +193,18 @@ const OrderForm = () => {
                 <Row>
                     <Col className={'col-6'}>
                         <Form.Group className="form-group">
-                            <Form.Label className={'right-15'}>Name:</Form.Label>
+                            <Form.Label className={'right-15'}>Mobile:</Form.Label>
                             <Form.Control className={'transparent_form'}
-                                          type="text"
-                                          name='name'
+                                          type="number"
+                                          name='phone'
                                           required/>
                         </Form.Group>
                     </Col>
 
                     <Col className={'col-6'}>
                         <Form.Group className="form-group">
-                            <Form.Label className={'right-15'}>role:</Form.Label>
-                            <Form.Control className={'transparent_form'}
-                                          type="text"
-                                          name='role'
-                                          required/>
+                            <Form.Label className={'right-15'} >Mobile.2:</Form.Label>
+                            <Form.Control className={'transparent_form'} type="number" name='sec_phone'/>
                         </Form.Group>
                     </Col>
                 </Row>
@@ -208,8 +219,10 @@ const OrderForm = () => {
                     </Col>
                     <Col className={'col-6'}>
                         <Form.Group className="form-group">
-                            <Form.Label className={'right-15'} id={'phone'}>Mob.number:</Form.Label>
-                            <Form.Control className={'transparent_form'} type="number" name='sec_phone'
+                            <Form.Label className={'right-15'}>Title:</Form.Label>
+                            <Form.Control className={'transparent_form'}
+                                          type="text"
+                                          name='role'
                                           required/>
                         </Form.Group>
                     </Col>

@@ -39,7 +39,9 @@ const AddSubTypeForm = () => {
             <Row>
                 <Col className={'col-3'}/>
                 <Col className={'col-6'}>
-                    <img src={'/add_sub_type_title.png'} className={'top-50'}/>
+                    <Button className={'top-50 add_filter'}>
+                        Add Item
+                    </Button>
                 </Col>
                 <Col className={'col-3'}/>
             </Row>
@@ -69,9 +71,9 @@ const AddSubTypeForm = () => {
                             <Form.Label className={'top-10 right-15'}>description:</Form.Label>
                             <Form.Control type="text" className={'transparent_form '} name='description' required/>
                         </Form.Group>
-                        <button type="submit" id={'edit-btn'}>
-                            <img src={'/add_sub_type_button.png'}/>
-                        </button>
+                        <Button type="submit" className={'add_filter_plus'} id={'edit-btn'}>
+                            Add
+                        </Button>
                     </Form>
                 </Col>
                 <Col className={'col-3'}/>

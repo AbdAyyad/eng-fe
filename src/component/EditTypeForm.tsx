@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {Col, Form, Row} from "react-bootstrap";
+import {Button, Col, Form, Row} from "react-bootstrap";
 import TypeResponse from "../model/TypeResponse";
 import ItemsService from "../service/ItemsService";
 import {useNavigate} from "react-router-dom";
@@ -49,8 +49,9 @@ const EditTypeForm = () => {
             <Row>
                 <Col className={'col-3'}/>
                 <Col className={'col-6'}>
-                    <img src={'/edit_type_title.png'} className={'top-50'}/>
-                </Col>
+                    <Button className={'top-50 add_filter'}>
+                        Edit Type
+                    </Button>                </Col>
                 <Col className={'col-3'}/>
             </Row>
             <Row>
@@ -80,9 +81,9 @@ const EditTypeForm = () => {
                             <Form.Control type="text" className={'transparent_form '} name='description' required
                                           defaultValue={state?.text}/>
                         </Form.Group>
-                        <button type="submit" id={'edit-btn'}>
-                            <img src={'/edit_type_button.png'}/>
-                        </button>
+                        <Button type="submit" className={'add_filter_edit'} id={'edit-btn'}>
+                            Edit
+                        </Button>
                     </Form>
                 </Col>
                 <Col className={'col-3'}/>

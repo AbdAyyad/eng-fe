@@ -6,6 +6,9 @@ type OrderResponse = {
     phone: string
     notes: string,
     id: number
+    category: string
+    item: string
+    subItem: string
 }
 
 export default OrderResponse

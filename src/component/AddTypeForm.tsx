@@ -24,8 +24,11 @@ const AddTypeForm = () => {
             <Row>
                 <Col className={'col-3'}/>
                 <Col className={'col-6'}>
-                    <img src={'/add_type_title.png'} className={'top-50'}/>
-                </Col>
+                    <Col className={'col-6'}>
+                        <Button className={'top-50 add_filter'}>
+                            Add Type
+                        </Button>
+                    </Col>                </Col>
                 <Col className={'col-3'}/>
             </Row>
             <Row>
@@ -41,8 +44,8 @@ const AddTypeForm = () => {
                             <Form.Label className={'top-10 right-15'}>name</Form.Label>
                             <Form.Control type="text" className={'transparent_form '} name='description' required/>
                         </Form.Group>
-                        <Button type="submit" id={'edit-btn'}>
-                            <img src={'/add_type_button.png'}/>
+                        <Button type="submit" className={'add_filter_plus'} id={'edit-btn'}>
+                            Add
                         </Button>
                     </Form>
                 </Col>

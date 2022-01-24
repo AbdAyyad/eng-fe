@@ -1,5 +1,5 @@
 import React from "react";
-import {Row, Col, Form} from "react-bootstrap";
+import {Row, Col, Form, Button} from "react-bootstrap";
 import TypeResponse from "../model/TypeResponse";
 import ItemsService from "../service/ItemsService";
 import {useNavigate} from "react-router-dom";
@@ -24,7 +24,9 @@ const AddCatForm = () => {
             <Row>
                 <Col className={'col-3'}/>
                 <Col className={'col-6'}>
-                    <img src={'/add_cat_title.png'} className={'top-50'}/>
+                    <Button className={'top-50 add_filter'}>
+                        Add Category
+                    </Button>
                 </Col>
                 <Col className={'col-3'}/>
             </Row>
@@ -40,9 +42,9 @@ const AddCatForm = () => {
                             <Form.Label className={'top-10 right-15'}>name:</Form.Label>
                             <Form.Control type="text" className={'transparent_form '} name='description' required/>
                         </Form.Group>
-                        <button type="submit" id={'edit-btn'}>
-                            <img src={'/add_cat_button.png'}/>
-                        </button>
+                        <Button type="submit" className={'add_filter_plus'} id={'edit-btn'}>
+                            Add
+                        </Button>
                     </Form>
                 </Col>
                 <Col className={'col-3'}/>

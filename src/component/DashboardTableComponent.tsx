@@ -2,7 +2,9 @@ import React, {useEffect, useState, useRef} from "react";
 import ItemsService from "../service/ItemsService";
 import {Col, Row, Form, Button} from "react-bootstrap";
 import Url from "../service/Url";
-import { useReactToPrint } from 'react-to-print';
+import {useReactToPrint} from 'react-to-print';
+import TypeResponse from "../model/TypeResponse";
+import itemsService from "../service/ItemsService";
 
 
 const DashboardTableComponent = () => {
@@ -19,42 +21,102 @@ const DashboardTableComponent = () => {
             phone: '',
             notes: '',
             role: '',
-            id: 0
-        }],
-        filters: [{
-            code: 0,
-            description: ''
+            id: 0,
+            category: '',
+            item: '',
+            subItem: ''
         }]
     })
+
+    const [catState, setCatState] = useState<{ data: [TypeResponse], selected: number }>()
+    const [typeState, setTypeState] = useState<{ data: [TypeResponse], selected: number }>()
+    const [subTypeState, setSubTypeState] = useState<{ data: [TypeResponse], selected: number }>()
 
     useEffect(() => {
         itemService.getItems().then(r => {
             console.log(r.data)
-            const data = r.data
-            itemService.getCategory().then(r => {
-                setState({
-                    data: data,
-                    filters: r.data
-                })
+            setState({
+                data: r.data
             })
         })
+        itemService.getTypes().then(r => {
+            setTypeState({data: r.data, selected: 0})
+        })
+        itemService.getCategory().then(r => {
+            setCatState({data: r.data, selected: 0})
+        })
+        setSubTypeState({data: [{code: 0, description: ''}], selected: 0})
     }, [])
 
-    const onChangeHandler = (e: any) => {
+    const onChangeTypeHandler = (e: any) => {
         console.log(e.target.value)
         const filter = e.target.value
         if (filter != 0) {
-            itemService.getItemsByType(e.target.value).then(r => {
+            setTypeState({
+                data: typeState?.data!!,
+                selected: +filter
+            })
+            itemService.getFilteredItems(e.target.value, catState?.selected, subTypeState?.selected).then(r => {
                 setState({
                     data: r.data,
-                    filters: state.filters
+                })
+            })
+            itemService.getSubTypes(filter as string).then(k => {
+                setSubTypeState({
+                    data: k.data,
+                    selected: 0
                 })
             })
         } else {
             itemService.getItems().then(r => {
                 setState({
                     data: r.data,
-                    filters: state.filters
+                })
+            })
+        }
+    }
+
+    const onChangeCatHandler = (e: any) => {
+        console.log(e.target.value)
+        const filter = e.target.value
+        if (filter != 0) {
+            // @ts-ignore
+            setCatState({
+                data: catState?.data!!,
+                selected: +filter
+            })
+            itemService.getFilteredItems(typeState?.selected, e.target.value, subTypeState?.selected).then(r => {
+                setState({
+                    data: r.data,
+                })
+            })
+        } else {
+            itemService.getItems().then(r => {
+                setState({
+                    data: r.data,
+                })
+            })
+        }
+    }
+
+    const onChangeSubTypeHandler = (e: any) => {
+        console.log(e.target.value)
+        const filter = e.target.value
+        if (filter != 0) {
+            // @ts-ignore
+            setSubTypeState({
+                data: subTypeState?.data!!,
+                selected: +filter
+            })
+            itemService.getFilteredItems(typeState?.selected, catState?.selected , e.target.value).then(r => {
+                setState({
+                    data: r.data,
+                })
+            })
+        } else {
+            itemService.getItems().then(r => {
+                setState({
+                    data: r.data,
                 })
             })
         }
@@ -125,7 +187,6 @@ const DashboardTableComponent = () => {
             const list = state.data.filter(item => item.id !== id)
             setState({
                 data: list,
-                filters: state.filters
             })
         })
     }
@@ -133,14 +194,13 @@ const DashboardTableComponent = () => {
     return (
         <Row ref={componentRef}>
             <Row className={'top-100'}>
-                <Col className={'col-1'}/>
                 <Col className={'col-3'}>
                     <Form.Select className={'top-15'}
                                  aria-label="Default select example"
-                                 onChange={e => onChangeHandler(e)}>
-                        <option value={0}>filter on type</option>
+                                 onChange={e => onChangeCatHandler(e)}>
+                        <option value={0}>filter on category</option>
                         {
-                            state.filters.map((item, idx) => {
+                            catState?.data.map((item, idx) => {
                                 return (
                                     <option key={item.code} value={item.code}>{item.description}</option>
                                 )
@@ -148,32 +208,57 @@ const DashboardTableComponent = () => {
                         }
                     </Form.Select>
                 </Col>
-                <Col className={'col-1'}/>
+                <Col className={'col-3'}>
+                    <Form.Select className={'top-15'}
+                                 aria-label="Default select example"
+                                 onChange={e => onChangeTypeHandler(e)}>
+                        <option value={0}>filter on item</option>
+                        {
+                            typeState?.data.map((item, idx) => {
+                                return (
+                                    <option key={item.code} value={item.code}>{item.description}</option>
+                                )
+                            })
+                        }
+                    </Form.Select>
+                </Col>
+                <Col className={'col-3'}>
+                    <Form.Select className={'top-15'}
+                                 aria-label="Default select example"
+                                 onChange={e => onChangeSubTypeHandler(e)}>
+                        <option value={0}>filter on sub item</option>
+                        {
+                            subTypeState?.data.map((item, idx) => {
+                                return (
+                                    <option key={item.code} value={item.code}>{item.description}</option>
+                                )
+                            })
+                        }
+                    </Form.Select>
+                </Col>
                 <Col className={'col-3'}>
                     <button className={'btn btn-outline-success top-15 excel'} id={'excel_btn'}>
                         <a href={Url.excel} className={'excel'}>
                             Excel
                         </a>
                     </button>
-                </Col>
-                <Col className={'col-1'}/>
-                <Col className={'col-3'}>
-                    <button className={'btn btn-primary top-15'} onClick={handlePrint}>
-                        print
-                    </button>
+                    {/*<button className={'btn btn-primary top-15'} onClick={handlePrint}>*/}
+                    {/*    print*/}
+                    {/*</button>*/}
                 </Col>
             </Row>
-            <Row>
+            <Row className={'overflow'}>
                 <table className="table">
                     <thead>
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Serial</th>
                         <th scope="col">Name</th>
-                        <th scope="col">type</th>
-                        <th scope="col">Role</th>
-                        <th scope="col">Phone</th>
-                        <th scope="col">Notes</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Item</th>
+                        <th scope="col">Sub Item</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Mobile</th>
                         <th></th>
                     </tr>
                     </thead>
@@ -191,8 +276,14 @@ const DashboardTableComponent = () => {
                                                onChange={(event => onChangeName(item.id, event))}
                                         />
                                     </td>
-                                    <td key={'type' + item.type + idx}>
-                                        {item.type}
+                                    <td key={'category' + item.category + idx}>
+                                        {item.category}
+                                    </td>
+                                    <td key={'item' + item.item + idx}>
+                                        {item.item}
+                                    </td>
+                                    <td key={'subItem' + item.subItem + idx}>
+                                        {item.subItem}
                                     </td>
                                     <td key={'role' + item.role + idx}>
                                         <input type={'text'}
@@ -205,13 +296,6 @@ const DashboardTableComponent = () => {
                                                defaultValue={item.phone}
                                                className={'dashboard-input'}
                                                onChange={(event => onChangePhone(item.id, event))}
-                                        />
-                                    </td>
-                                    <td key={'note' + item.notes + idx}>
-                                        <input type={'text'}
-                                               defaultValue={item.notes}
-                                               className={'dashboard-input'}
-                                               onChange={(event => onChangeNotes(item.id, event))}
                                         />
                                     </td>
                                     <td>

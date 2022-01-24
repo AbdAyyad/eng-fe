@@ -58,7 +58,7 @@ h4 {
 }
 
 .top-50 {
-    margin-top: 50px;
+    margin-top: 50px !important;
 }
 
 .top-10 {
@@ -269,4 +269,32 @@ label {
 
 .height-40 {
     height : 40px;
+}
+
+.overflow {
+    height: 700px;
+    overflow-y: scroll;
+}
+
+.add_filter {
+    width: 430px;
+    height: 60px;
+    background-image: url("http://localhost:3000/add_filter.jpeg");
+    margin-bottom: 20px;
+}
+
+
+.add_filter_plus {
+    width: 390px;
+    height: 60px;
+    background-image: url("http://localhost:3000/add_filter_plus.jpeg");
+    margin-bottom: 20px;
+}
+
+
+.add_filter_edit {
+    width: 390px;
+    height: 60px;
+    background-image: url("http://localhost:3000/add_filter_edit.jpeg");
+    margin-bottom: 20px;
 }
