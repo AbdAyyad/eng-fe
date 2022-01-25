@@ -112,7 +112,7 @@ const DashboardTableComponent = () => {
                 data: subTypeState?.data!!,
                 selected: +filter
             })
-            itemService.getFilteredItems(typeState?.selected, catState?.selected , e.target.value).then(r => {
+            itemService.getFilteredItems(typeState?.selected, catState?.selected, e.target.value).then(r => {
                 setState({
                     data: r.data,
                 })
@@ -196,133 +196,215 @@ const DashboardTableComponent = () => {
     }
 
     return (
-        <Row ref={componentRef}>
-            <Row className={'top-100'}>
-                <Col className={'col-3'}>
-                    <Form.Select className={'top-15'}
-                                 aria-label="Default select example"
-                                 onChange={e => onChangeCatHandler(e)}>
-                        <option value={0}>filter on category</option>
+        <div>
+            <div style={{display: "none"}}>
+                <Row ref={componentRef}>
+                    <Row className={'print'}>
+                        <Row>
+                            <Col className={'col-4'}/>
+                            <Col className={'col-4'}>
+                                <img src={'/header.png'}/>
+                            </Col>
+                            <Col className={'col-4'}/>
+                        </Row>
+                        <Row>
+                            <Col className={'col-1'}/>
+                            <Col className={'col-10'}>
+                                <table className="table">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Serial</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Category</th>
+                                        <th scope="col">Item</th>
+                                        <th scope="col">Sub Item</th>
+                                        <th scope="col">Title</th>
+                                        <th scope="col">Mobile</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {
+                                        state.data.map((item, idx) => {
+                                            return (
+                                                <tr key={'tr' + idx}>
+                                                    <th key={idx + 'id' + idx} scope="row">{idx + 1}</th>
+                                                    <td key={'serial' + item.serial + idx}>{item.serial}</td>
+                                                    <td key={'name' + item.name + idx}>
+                                                        <input type={'text'}
+                                                               defaultValue={item.name}
+                                                               className={'dashboard-input'}
+                                                               onChange={(event => onChangeName(item.id, event))}
+                                                        />
+                                                    </td>
+                                                    <td key={'category' + item.category + idx}>
+                                                        {item.category}
+                                                    </td>
+                                                    <td key={'item' + item.item + idx}>
+                                                        {item.item}
+                                                    </td>
+                                                    <td key={'subItem' + item.subItem + idx}>
+                                                        {item.subItem}
+                                                    </td>
+                                                    <td key={'role' + item.role + idx}>
+                                                        <input type={'text'}
+                                                               defaultValue={item.role}
+                                                               className={'dashboard-input'}
+                                                               onChange={(event => onChangeRole(item.id, event))}/>
+                                                    </td>
+                                                    <td key={'phone' + item.phone + idx}>
+                                                        <input type={'number'}
+                                                               defaultValue={item.phone}
+                                                               className={'dashboard-input'}
+                                                               onChange={(event => onChangePhone(item.id, event))}
+                                                        />
+                                                    </td>
+                                                </tr>
+                                            )
+                                        })
+                                    }
+                                    </tbody>
+                                </table>
+                            </Col>
+                            <Col className={'col-1'}/>
+                        </Row>
+                        <Row>
+                            <Col className={'col-12'}>
+                                <img src={'/footer.png'}/>
+                            </Col>
+                        </Row>
+                    </Row>
+                </Row>
+            </div>
+            <Row>
+                <Row className={'top-100'}>
+                    <Col className={'col-3'}>
+                        <Form.Select className={'top-15'}
+                                     aria-label="Default select example"
+                                     onChange={e => onChangeCatHandler(e)}>
+                            <option value={0}>filter on category</option>
+                            {
+                                catState?.data.map((item, idx) => {
+                                    return (
+                                        <option key={item.code} value={item.code}>{item.description}</option>
+                                    )
+                                })
+                            }
+                        </Form.Select>
+                    </Col>
+                    <Col className={'col-3'}>
+                        <Form.Select className={'top-15'}
+                                     aria-label="Default select example"
+                                     onChange={e => onChangeTypeHandler(e)}>
+                            <option value={0}>filter on item</option>
+                            {
+                                typeState?.data.map((item, idx) => {
+                                    return (
+                                        <option key={item.code} value={item.code}>{item.description}</option>
+                                    )
+                                })
+                            }
+                        </Form.Select>
+                    </Col>
+                    <Col className={'col-3'}>
+                        <Form.Select className={'top-15'}
+                                     aria-label="Default select example"
+                                     onChange={e => onChangeSubTypeHandler(e)}>
+                            <option value={0}>filter on sub item</option>
+                            {
+                                subTypeState?.data.map((item, idx) => {
+                                    return (
+                                        <option key={item.code} value={item.code}>{item.description}</option>
+                                    )
+                                })
+                            }
+                        </Form.Select>
+                    </Col>
+                    <Col className={'col-3'}>
                         {
-                            catState?.data.map((item, idx) => {
+                            admin ? (
+                                <div>
+                                    <a href={Url.excel}>
+                                        <Button className={'btn btn-outline-success top-15 excel'} id={'excel_btn'}>
+                                            Excel
+                                        </Button>
+                                    </a>
+                                    <button className={'btn btn-primary top-15'} onClick={handlePrint}>
+                                        print
+                                    </button>
+                                </div>
+                            ) : null
+                        }
+                    </Col>
+                </Row>
+                <Row className={'overflow'}>
+                    <table className="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Serial</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">Item</th>
+                            <th scope="col">Sub Item</th>
+                            <th scope="col">Title</th>
+                            <th scope="col">Mobile</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {
+                            state.data.map((item, idx) => {
                                 return (
-                                    <option key={item.code} value={item.code}>{item.description}</option>
+                                    <tr key={'tr' + idx}>
+                                        <th key={idx + 'id' + idx} scope="row">{idx + 1}</th>
+                                        <td key={'serial' + item.serial + idx}>{item.serial}</td>
+                                        <td key={'name' + item.name + idx}>
+                                            <input type={'text'}
+                                                   defaultValue={item.name}
+                                                   className={'dashboard-input'}
+                                                   onChange={(event => onChangeName(item.id, event))}
+                                            />
+                                        </td>
+                                        <td key={'category' + item.category + idx}>
+                                            {item.category}
+                                        </td>
+                                        <td key={'item' + item.item + idx}>
+                                            {item.item}
+                                        </td>
+                                        <td key={'subItem' + item.subItem + idx}>
+                                            {item.subItem}
+                                        </td>
+                                        <td key={'role' + item.role + idx}>
+                                            <input type={'text'}
+                                                   defaultValue={item.role}
+                                                   className={'dashboard-input'}
+                                                   onChange={(event => onChangeRole(item.id, event))}/>
+                                        </td>
+                                        <td key={'phone' + item.phone + idx}>
+                                            <input type={'number'}
+                                                   defaultValue={item.phone}
+                                                   className={'dashboard-input'}
+                                                   onChange={(event => onChangePhone(item.id, event))}
+                                            />
+                                        </td>
+                                        <td>
+                                            <Button className={'btn edit-btn'} onClick={() => {
+                                                updateOrder(item.id)
+                                            }}>Edit</Button>
+                                            <Button className={'btn delete-btn'} onClick={() => {
+                                                deleteOrder(item.id)
+                                            }}>Delete</Button>
+                                        </td>
+                                    </tr>
                                 )
                             })
                         }
-                    </Form.Select>
-                </Col>
-                <Col className={'col-3'}>
-                    <Form.Select className={'top-15'}
-                                 aria-label="Default select example"
-                                 onChange={e => onChangeTypeHandler(e)}>
-                        <option value={0}>filter on item</option>
-                        {
-                            typeState?.data.map((item, idx) => {
-                                return (
-                                    <option key={item.code} value={item.code}>{item.description}</option>
-                                )
-                            })
-                        }
-                    </Form.Select>
-                </Col>
-                <Col className={'col-3'}>
-                    <Form.Select className={'top-15'}
-                                 aria-label="Default select example"
-                                 onChange={e => onChangeSubTypeHandler(e)}>
-                        <option value={0}>filter on sub item</option>
-                        {
-                            subTypeState?.data.map((item, idx) => {
-                                return (
-                                    <option key={item.code} value={item.code}>{item.description}</option>
-                                )
-                            })
-                        }
-                    </Form.Select>
-                </Col>
-                <Col className={'col-3'}>
-                    {
-                        admin ? (
-                            <a href={Url.excel}>
-                                <Button className={'btn btn-outline-success top-15 excel'} id={'excel_btn'}>
-                                    Excel
-                                </Button>
-                            </a>
-                        ) : null
-                    }
-
-                    {/*<button className={'btn btn-primary top-15'} onClick={handlePrint}>*/}
-                    {/*    print*/}
-                    {/*</button>*/}
-                </Col>
+                        </tbody>
+                    </table>
+                </Row>
             </Row>
-            <Row className={'overflow'}>
-                <table className="table">
-                    <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Serial</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Category</th>
-                        <th scope="col">Item</th>
-                        <th scope="col">Sub Item</th>
-                        <th scope="col">Title</th>
-                        <th scope="col">Mobile</th>
-                        <th></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {
-                        state.data.map((item, idx) => {
-                            return (
-                                <tr key={'tr' + idx}>
-                                    <th key={idx + 'id' + idx} scope="row">{idx + 1}</th>
-                                    <td key={'serial' + item.serial + idx}>{item.serial}</td>
-                                    <td key={'name' + item.name + idx}>
-                                        <input type={'text'}
-                                               defaultValue={item.name}
-                                               className={'dashboard-input'}
-                                               onChange={(event => onChangeName(item.id, event))}
-                                        />
-                                    </td>
-                                    <td key={'category' + item.category + idx}>
-                                        {item.category}
-                                    </td>
-                                    <td key={'item' + item.item + idx}>
-                                        {item.item}
-                                    </td>
-                                    <td key={'subItem' + item.subItem + idx}>
-                                        {item.subItem}
-                                    </td>
-                                    <td key={'role' + item.role + idx}>
-                                        <input type={'text'}
-                                               defaultValue={item.role}
-                                               className={'dashboard-input'}
-                                               onChange={(event => onChangeRole(item.id, event))}/>
-                                    </td>
-                                    <td key={'phone' + item.phone + idx}>
-                                        <input type={'number'}
-                                               defaultValue={item.phone}
-                                               className={'dashboard-input'}
-                                               onChange={(event => onChangePhone(item.id, event))}
-                                        />
-                                    </td>
-                                    <td>
-                                        <Button className={'btn edit-btn'} onClick={() => {
-                                            updateOrder(item.id)
-                                        }}>Edit</Button>
-                                        <Button className={'btn delete-btn'} onClick={() => {
-                                            deleteOrder(item.id)
-                                        }}>Delete</Button>
-                                    </td>
-                                </tr>
-                            )
-                        })
-                    }
-                    </tbody>
-                </table>
-            </Row>
-        </Row>
+        </div>
     )
 }
 
