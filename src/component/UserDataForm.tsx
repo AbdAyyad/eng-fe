@@ -76,6 +76,7 @@ const UserDataForm = () => {
                         <tr>
                             <th>#</th>
                             <th>user name</th>
+                            <th>permission</th>
                             <th></th>
                             <th></th>
                         </tr>
@@ -87,6 +88,7 @@ const UserDataForm = () => {
                                     <tr key={'tr' + idx}>
                                         <td key={idx + 'id' + idx}>{idx + 1}</td>
                                         <td key={'name' + idx}>{item.username}</td>
+                                        <td key={'permission' + idx}>{item.permission}</td>
                                         <td key={'reset' + idx}>
                                             <Form.Control
                                                 type={'password'}

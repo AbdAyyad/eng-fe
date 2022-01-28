@@ -264,7 +264,7 @@ label {
 }
 
 .dashboard-input {
-    width: 100px !important;
+    width: 110px !important;
     background-color: transparent;
     border: hidden;
 }
@@ -301,8 +301,21 @@ label {
     margin-bottom: 20px;
 }
 
+.logout {
+    position: absolute;
+    top: 770px;
+    left: 180px;
+}
+
 .print {
     /*background-image: url("/print_background.png");*/
-    size: 80mm 50mm;
-    page-break-before: always;
+    page-break-before: always !important;
+    page-break-after: always !important;;
+
+    display: block;
+}
+
+.print-table{
+    height: 510px;
+    max-height: 510px;
 }

@@ -192,19 +192,25 @@ const OrderForm = () => {
 
                 <Row>
                     <Col className={'col-6'}>
+                        <small>Format: 0791234567</small>
                         <Form.Group className="form-group">
                             <Form.Label className={'right-15'}>Mobile:</Form.Label>
                             <Form.Control className={'transparent_form'}
-                                          type="number"
+                                          type="tel"
+                                          pattern="[0-9]{10}"
                                           name='phone'
                                           required/>
                         </Form.Group>
                     </Col>
 
                     <Col className={'col-6'}>
+                        <small>Format: 0791234567</small>
                         <Form.Group className="form-group">
                             <Form.Label className={'right-15'} >Mobile.2:</Form.Label>
-                            <Form.Control className={'transparent_form'} type="number" name='sec_phone'/>
+                            <Form.Control className={'transparent_form'}
+                                          type="tel"
+                                          pattern="[0-9]{10}"
+                                          name='sec_phone'/>
                         </Form.Group>
                     </Col>
                 </Row>

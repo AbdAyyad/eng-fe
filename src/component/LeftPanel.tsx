@@ -57,6 +57,13 @@ const LeftPanel = () => {
                             <h4>Search</h4>
                         </NavLink>
                     </li>
+
+                    <li className={'nav-item'}>
+                        <NavLink className={'nav-link'} to={'/log-out'}>
+                            <img width={'450px'} height={'75px'}  src={'/login_button.png'}/>
+                            <h4 className={'logout'}>Logout</h4>
+                        </NavLink>
+                    </li>
                 </ul>
             </div>
         </>

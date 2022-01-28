@@ -4,7 +4,8 @@ type OrderResponse = {
     name: string
     role: string
     phone: string
-    notes: string,
+    email: string
+    notes: string
     id: number
     category: string
     item: string
