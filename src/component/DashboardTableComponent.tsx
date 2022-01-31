@@ -165,6 +165,19 @@ const DashboardTableComponent = () => {
         state.data = list
     }
 
+    const onChangeEmail = (id: number, event: any) => {
+        const idx = state.data.findIndex(item => item.id === id)
+        const list = state.data.filter(item => item.id !== id)
+        const item = state.data.filter(item => item.id === id)[0]
+        item.email = event.target.value
+        list.splice(idx, 0, item)
+        // setState({
+        //     data: list,
+        //     filters: state.filters
+        // })
+        state.data = list
+    }
+
     const onChangeNotes = (id: number, event: any) => {
         event.preventDefault()
         const idx = state.data.findIndex(item => item.id === id)
@@ -199,93 +212,74 @@ const DashboardTableComponent = () => {
         <div>
             <div style={{display: "none"}}>
                 <Row ref={componentRef}>
-                    <Row>
-                        {
-                            state.data.map((item, idx) => {
-                                if (idx % 12 === 0) {
-                                    console.log('state data', state.data)
-                                    const cut = state.data.slice(idx, idx + 12);
-                                    console.log("cut ", idx, cut)
-                                    return cut
-                                }
-                                return null
-                            })
-                                .filter(e => e).map((subItem, idx) => {
-                                console.log(subItem?.length)
-                                return (
-                                    <Row key={'upper' + idx} className={'print'}>
-                                        <Row>
-                                            <Col className={'col-4'}/>
-                                            <Col className={'col-4'}>
-                                                <img src={'/header.png'}/>
-                                            </Col>
-                                            <Col className={'col-4'}/>
-                                        </Row>
-                                        <Row className={'print-table'}>
-                                            <Col className={'col-1'}/>
-                                            <Col className={'col-10'}>
-                                                <table className={'table'}>
-                                                    <thead>
-                                                    <tr>
-                                                        <th scope="col">#</th>
-                                                        <th scope="col">Serial</th>
-                                                        <th scope="col">Name</th>
-                                                        <th scope="col">Category</th>
-                                                        <th scope="col">Item</th>
-                                                        <th scope="col">Sub Item</th>
-                                                        <th scope="col">Title</th>
-                                                        <th scope="col">Mobile</th>
-                                                        <th scope="col">Email</th>
-                                                    </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                    {
-                                                        subItem?.map((s, ss) => {
-                                                            return (
-                                                                <tr key={ss + 'print tr' + idx}>
-                                                                    <th key={idx + 'print id' + ss}
-                                                                        scope="row">{idx * 12 + ss + 1}</th>
-                                                                    <td key={ss + 'serial' + s.serial + idx}>{s.serial}</td>
-                                                                    <td key={ss + 'name' + s.name + idx}>
-                                                                        {s.name}
-                                                                    </td>
-                                                                    <td key={ss + 'print category' + s.category + idx}>
-                                                                        {s.category}
-                                                                    </td>
-                                                                    <td key={ss + 'item' + s.item + idx}>
-                                                                        {s.item}
-                                                                    </td>
-                                                                    <td key={ss + 'print subItem' + s.subItem + idx}>
-                                                                        {s.subItem}
-                                                                    </td>
-                                                                    <td key={ss + 'print role' + s.role + idx}>
-                                                                        {s.role}
-                                                                    </td>
-                                                                    <td key={ss + 'print phone' + s.phone + idx}>
-                                                                        {s.phone}
-                                                                    </td>
-                                                                    <td key={ss + 'print email' + s.email + idx}>
-                                                                        {s.email}
-                                                                    </td>
-                                                                </tr>
-
-                                                            )
-                                                        })
-                                                    }
-                                                    </tbody>
-                                                </table>
-                                            </Col>
-                                            <Col className={'col-1'}/>
-                                        </Row>
-                                        <Row>
-                                            <Col className={'col-12'}>
-                                                <img src={'/footer.png'}/>
-                                            </Col>
-                                        </Row>
-                                    </Row>
-                                )
-                            })
-                        }
+                    <Row className={'print'}>
+                        <Row>
+                            <Col className={'col-4'}/>
+                            <Col className={'col-4'}>
+                                <img src={'/header.png'}/>
+                            </Col>
+                            <Col className={'col-4'}/>
+                        </Row>
+                        <Row>
+                            <Col className={'col-1'}/>
+                            <Col className={'col-10'}>
+                                <table className="table">
+                                    <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th scope="col">Serial</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Category</th>
+                                        <th scope="col">Item</th>
+                                        <th scope="col">Sub Item</th>
+                                        <th scope="col">Title</th>
+                                        <th scope="col">Mobile</th>
+                                        <th scope="col">Email</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {
+                                        state.data.map((item, idx) => {
+                                            return (
+                                                <tr key={'tr' + idx}>
+                                                    <td key={idx + 'id' + idx} scope="row" style={{maxWidth: '100px'}}>{idx + 1}</td>
+                                                    <td key={'serial' + item.serial + idx}>{item.serial}</td>
+                                                    <td key={'name' + item.name + idx}>
+                                                        {item.name}
+                                                    </td>
+                                                    <td key={'category' + item.category + idx}>
+                                                        {item.category}
+                                                    </td>
+                                                    <td key={'item' + item.item + idx}>
+                                                        {item.item}
+                                                    </td>
+                                                    <td key={'subItem' + item.subItem + idx}>
+                                                        {item.subItem}
+                                                    </td>
+                                                    <td key={'role' + item.role + idx}>
+                                                        {item.role}
+                                                    </td>
+                                                    <td key={'phone' + item.phone + idx}>
+                                                        {item.phone}
+                                                    </td>
+                                                    <td key={'email' + item.email + idx}
+                                                        style={{textOverflow: 'ellipsis'}}>
+                                                        {item.email}
+                                                    </td>
+                                                </tr>
+                                            )
+                                        })
+                                    }
+                                    </tbody>
+                                </table>
+                            </Col>
+                            <Col className={'col-1'}/>
+                        </Row>
+                        <Row>
+                            <Col className={'col-12'}>
+                                <img src={'/footer.png'}/>
+                            </Col>
+                        </Row>
                     </Row>
                 </Row>
             </div>
@@ -403,8 +397,13 @@ const DashboardTableComponent = () => {
                                                    onChange={(event => onChangePhone(item.id, event))}
                                             />
                                         </td>
-                                        <td key={'email' + item.email + idx}>
-                                            {item.email}
+                                        <td key={'email' + item.email + idx} style={{minWidth: '300px'}}>
+                                            <input type={'email'}
+                                                   defaultValue={item.email}
+                                                   className={'dashboard-input'}
+                                                   onChange={(event => onChangeEmail(item.id, event))}
+                                                   style={{minWidth: '300px'}}
+                                            />
                                         </td>
                                         <td>
                                             <Button className={'btn edit-btn'} onClick={() => {

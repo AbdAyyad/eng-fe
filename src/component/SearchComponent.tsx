@@ -4,6 +4,7 @@ import {Col, Row, Form, Button} from "react-bootstrap";
 import Url from "../service/Url";
 import {useReactToPrint} from 'react-to-print';
 import TypeResponse from "../model/TypeResponse";
+import Auth from "../service/Auth";
 
 
 const SearchComponent = () => {
@@ -23,7 +24,8 @@ const SearchComponent = () => {
             id: 0,
             item: '',
             category: '',
-            subItem: ''
+            subItem: '',
+            email: ''
         }],
         keyword: ''
     })
@@ -217,9 +219,85 @@ const SearchComponent = () => {
         })
     }
 
+    const admin = Auth.isAdmin()
 
     return (
-        <Row ref={componentRef}>
+        <Row>
+            <div style={{display: "none"}}>
+                <Row ref={componentRef}>
+                    <Row className={'print'}>
+                        <Row>
+                            <Col className={'col-4'}/>
+                            <Col className={'col-4'}>
+                                <img src={'/header.png'}/>
+                            </Col>
+                            <Col className={'col-4'}/>
+                        </Row>
+                        <Row>
+                            <Col className={'col-1'}/>
+                            <Col className={'col-10'}>
+                                <table className="table">
+                                    <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th scope="col">Serial</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Category</th>
+                                        <th scope="col">Item</th>
+                                        <th scope="col">Sub Item</th>
+                                        <th scope="col">Title</th>
+                                        <th scope="col">Mobile</th>
+                                        <th scope="col">Email</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {
+                                        state.data.map((item, idx) => {
+                                            return (
+                                                <tr key={'tr' + idx}>
+                                                    <td key={idx + 'id' + idx} scope="row"
+                                                        style={{maxWidth: '100px'}}>{idx + 1}</td>
+                                                    <td key={'serial' + item.serial + idx}>{item.serial}</td>
+                                                    <td key={'name' + item.name + idx}>
+                                                        {item.name}
+                                                    </td>
+                                                    <td key={'category' + item.category + idx}>
+                                                        {item.category}
+                                                    </td>
+                                                    <td key={'item' + item.item + idx}>
+                                                        {item.item}
+                                                    </td>
+                                                    <td key={'subItem' + item.subItem + idx}>
+                                                        {item.subItem}
+                                                    </td>
+                                                    <td key={'role' + item.role + idx}>
+                                                        {item.role}
+                                                    </td>
+                                                    <td key={'phone' + item.phone + idx}>
+                                                        {item.phone}
+                                                    </td>
+                                                    <td key={'email' + item.email + idx}
+                                                        style={{textOverflow: 'ellipsis'}}>
+                                                        {item.email}
+                                                    </td>
+                                                </tr>
+                                            )
+                                        })
+                                    }
+                                    </tbody>
+                                </table>
+                            </Col>
+                            <Col className={'col-1'}/>
+                        </Row>
+                        <Row>
+                            <Col className={'col-12'}>
+                                <img src={'/footer.png'}/>
+                            </Col>
+                        </Row>
+                    </Row>
+                </Row>
+            </div>
+
             <Row className={'top-100'}>
                 <Col className={'col-3'}/>
                 <Col className={'col-6'}>
@@ -231,7 +309,15 @@ const SearchComponent = () => {
                         </Form.Group>
                     </Form>
                 </Col>
-                <Col className={'col-3'}/>
+                <Col className={'col-3'}>
+                    {
+                        admin ? (
+                            <button className={'btn btn-primary top-15'} onClick={handlePrint}>
+                                print
+                            </button>
+                        ) : null
+                    }
+                </Col>
             </Row>
             <Row>
                 <Col className={'col-4'}>

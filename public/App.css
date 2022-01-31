@@ -275,7 +275,7 @@ label {
 
 .overflow {
     height: 700px;
-    overflow-y: scroll;
+    overflow: scroll;
 }
 
 .add_filter {
