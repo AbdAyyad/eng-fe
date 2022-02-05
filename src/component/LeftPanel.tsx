@@ -15,19 +15,15 @@ const LeftPanel = () => {
                         </NavLink>
                     </li>
 
-                    {
-                        admin ? (
-                            <li className={'nav-item'} id={'add_data'}>
-                                <NavLink to={'/new-order'} className={'nav-link'}>
-                                    <h4 id={'add_data_text'}>Add data</h4>
-                                </NavLink>
-                            </li>
-                        ) : null
-                    }
+                    <li className={'nav-item'} id={'add_data'}>
+                        <NavLink to={'/new-order'} className={'nav-link'}>
+                            <h4 id={'add_data_text'}>Add data</h4>
+                        </NavLink>
+                    </li>
 
                     <li className={'nav-item'} id={'contractors'}>
                         <NavLink to={'/dashboard'} className={'nav-link'}>
-                            <h4>Contractors list</h4>
+                            <h4>data list</h4>
                         </NavLink>
                     </li>
 
