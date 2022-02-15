@@ -1,5 +1,5 @@
 class Url {
-    static base = 'http://localhost:8080'
+    static base = 'http://34.241.174.254:8080'
     static api = this.base + '/api'
     public static login = this.api + '/login'
     public static user = this.api + '/user'
