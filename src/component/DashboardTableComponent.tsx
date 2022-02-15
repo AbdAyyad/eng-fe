@@ -1,6 +1,6 @@
-import React, {useEffect, useState, useRef} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import ItemsService from "../service/ItemsService";
-import {Col, Row, Form, Button} from "react-bootstrap";
+import {Button, Col, Form, Row} from "react-bootstrap";
 import Url from "../service/Url";
 import {useReactToPrint} from 'react-to-print';
 import TypeResponse from "../model/TypeResponse";
@@ -214,11 +214,9 @@ const DashboardTableComponent = () => {
                 <Row ref={componentRef}>
                     <Row className={'print'}>
                         <Row>
-                            <Col className={'col-4'}/>
-                            <Col className={'col-4'}>
-                                <img src={'/header.png'}/>
+                            <Col className={'col-12'}>
+                                <img src={'/print_logo.png'}/>
                             </Col>
-                            <Col className={'col-4'}/>
                         </Row>
                         <Row>
                             <Col className={'col-1'}/>
@@ -406,12 +404,19 @@ const DashboardTableComponent = () => {
                                             />
                                         </td>
                                         <td>
-                                            <Button className={'btn edit-btn'} onClick={() => {
-                                                updateOrder(item.id)
-                                            }}>Edit</Button>
-                                            <Button className={'btn delete-btn'} onClick={() => {
-                                                deleteOrder(item.id)
-                                            }}>Delete</Button>
+                                            {
+                                                admin ? (
+                                                    <>
+                                                        <Button className={'btn edit-btn'} onClick={() => {
+                                                            updateOrder(item.id)
+                                                        }}>Edit</Button>
+                                                        <Button className={'btn delete-btn'} onClick={() => {
+                                                            deleteOrder(item.id)
+                                                        }}>Delete</Button>
+                                                    </>
+
+                                                ) : null
+                                            }
                                         </td>
                                     </tr>
                                 )
