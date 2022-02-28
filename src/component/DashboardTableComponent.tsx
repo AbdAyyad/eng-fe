@@ -28,7 +28,9 @@ const DashboardTableComponent = () => {
             category: '',
             item: '',
             subItem: '',
-            email: ''
+            email: '',
+            sec_phone: '',
+            address: ''
         }]
     })
 
@@ -214,9 +216,11 @@ const DashboardTableComponent = () => {
                 <Row ref={componentRef}>
                     <Row className={'print'}>
                         <Row>
-                            <Col className={'col-12'}>
-                                <img src={'/print_logo.png'}/>
+                            <Col className={'col-4'}/>
+                            <Col className={'col-4'}>
+                                <img width={'300px'} height={'150px'} src={'/print_logo.png'}/>
                             </Col>
+                            <Col className={'col-4'}/>
                         </Row>
                         <Row>
                             <Col className={'col-1'}/>
@@ -233,6 +237,9 @@ const DashboardTableComponent = () => {
                                         <th scope="col">Title</th>
                                         <th scope="col">Mobile</th>
                                         <th scope="col">Email</th>
+                                        <th scope="col">Second-Mobile</th>
+                                        <th scope="col">Notes</th>
+                                        <th scope="col">Address</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -240,7 +247,7 @@ const DashboardTableComponent = () => {
                                         state.data.map((item, idx) => {
                                             return (
                                                 <tr key={'tr' + idx}>
-                                                    <td key={idx + 'id' + idx} scope="row" style={{maxWidth: '100px'}}>{idx + 1}</td>
+                                                    <td key={idx + 'id' + idx} style={{maxWidth: '100px'}}>{idx + 1}</td>
                                                     <td key={'serial' + item.serial + idx}>{item.serial}</td>
                                                     <td key={'name' + item.name + idx}>
                                                         {item.name}
@@ -263,6 +270,15 @@ const DashboardTableComponent = () => {
                                                     <td key={'email' + item.email + idx}
                                                         style={{textOverflow: 'ellipsis'}}>
                                                         {item.email}
+                                                    </td>
+                                                    <td key={'sec_phone' + item.sec_phone + idx}>
+                                                        {item.sec_phone}
+                                                    </td>
+                                                    <td key={'notes' + item.notes + idx}>
+                                                        {item.notes}
+                                                    </td>
+                                                    <td key={'address' + item.address + idx}>
+                                                        {item.address}
                                                     </td>
                                                 </tr>
                                             )
@@ -355,6 +371,9 @@ const DashboardTableComponent = () => {
                             <th scope="col">Title</th>
                             <th scope="col">Mobile</th>
                             <th scope="col">Email</th>
+                            <th scope="col">Second-Mobile</th>
+                            <th scope="col">Notes</th>
+                            <th scope="col">Address</th>
                             <th></th>
                         </tr>
                         </thead>
@@ -402,6 +421,20 @@ const DashboardTableComponent = () => {
                                                    onChange={(event => onChangeEmail(item.id, event))}
                                                    style={{minWidth: '300px'}}
                                             />
+                                        </td>
+                                        <td key={'sec_phone' + item.sec_phone + idx} style={{minWidth: '300px'}}>
+                                            {item.sec_phone}
+                                        </td>
+                                        <td key={'notes' + item.notes + idx} style={{minWidth: '300px'}}>
+                                            <input type={'notes'}
+                                                   defaultValue={item.notes}
+                                                   className={'dashboard-input'}
+                                                   onChange={(event => onChangeNotes(item.id, event))}
+                                                   style={{minWidth: '300px'}}
+                                            />
+                                        </td>
+                                        <td key={'address' + item.address + idx} style={{minWidth: '300px'}}>
+                                            {item.address}
                                         </td>
                                         <td>
                                             {
