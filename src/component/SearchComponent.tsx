@@ -402,30 +402,30 @@ const SearchComponent = () => {
                             return (
                                 <tr key={'tr' + idx}>
                                     <th key={idx + 'id' + idx} scope="row">{idx + 1}</th>
-                                    <td key={'serial' + item.serial + idx}>{item.serial}</td>
-                                    <td key={'name' + item.name + idx}>
+                                    <td key={'serial' + item.serial + idx} style={{minWidth: '300px'}}>{item.serial}</td>
+                                    <td key={'name' + item.name + idx} style={{minWidth: '300px'}}>
                                         <input type={'text'}
                                                defaultValue={item.name}
                                                className={'dashboard-input'}
                                                onChange={(event => onChangeName(item.id, event))}
                                         />
                                     </td>
-                                    <td key={'category' + item.category + idx}>
+                                    <td key={'category' + item.category + idx} style={{minWidth: '300px'}}>
                                         {item.category}
                                     </td>
-                                    <td key={'item' + item.item + idx}>
+                                    <td key={'item' + item.item + idx} style={{minWidth: '300px'}}>
                                         {item.item}
                                     </td>
-                                    <td key={'subItem' + item.subItem + idx}>
+                                    <td key={'subItem' + item.subItem + idx} style={{minWidth: '300px'}}>
                                         {item.subItem}
                                     </td>
-                                    <td key={'role' + item.role + idx}>
+                                    <td key={'role' + item.role + idx} style={{minWidth: '300px'}}>
                                         <input type={'text'}
                                                defaultValue={item.role}
                                                className={'dashboard-input'}
                                                onChange={(event => onChangeRole(item.id, event))}/>
                                     </td>
-                                    <td key={'phone' + item.phone + idx}>
+                                    <td key={'phone' + item.phone + idx} style={{minWidth: '300px'}}>
                                         <input type={'number'}
                                                defaultValue={item.phone}
                                                className={'dashboard-input'}
