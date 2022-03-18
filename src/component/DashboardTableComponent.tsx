@@ -411,6 +411,14 @@ const DashboardTableComponent = () => {
                                                             updateOrder(item.id)
                                                         }}>Edit</Button>
                                                         <Button className={'btn delete-btn'} onClick={() => {
+                                                            const r = window.confirm("Are you sure you want to delete " +
+                                                                "this record?");
+
+                                                            //cancel clicked : stop button default action
+                                                            if (!r) {
+                                                                return false;
+                                                            }
+                                                            //action continues, saves in database, no need for more code
                                                             deleteOrder(item.id)
                                                         }}>Delete</Button>
                                                     </>
