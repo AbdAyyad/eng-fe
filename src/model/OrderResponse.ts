@@ -10,6 +10,8 @@ type OrderResponse = {
     category: string
     item: string
     subItem: string
+    sec_phone: string
+    address: string
 }
 
 export default OrderResponse

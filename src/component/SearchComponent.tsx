@@ -1,7 +1,6 @@
 import React, {useEffect, useState, useRef} from "react";
 import ItemsService from "../service/ItemsService";
 import {Col, Row, Form, Button} from "react-bootstrap";
-import Url from "../service/Url";
 import {useReactToPrint} from 'react-to-print';
 import TypeResponse from "../model/TypeResponse";
 import Auth from "../service/Auth";
@@ -25,7 +24,9 @@ const SearchComponent = () => {
             item: '',
             category: '',
             subItem: '',
-            email: ''
+            email: '',
+            sec_phone: '',
+            address: ''
         }],
         keyword: ''
     })
@@ -229,7 +230,7 @@ const SearchComponent = () => {
                         <Row>
                             <Col className={'col-4'}/>
                             <Col className={'col-4'}>
-                                <img src={'/header.png'}/>
+                                <img width={'300px'} height={'150px'} src={'/print_logo.png'}/>
                             </Col>
                             <Col className={'col-4'}/>
                         </Row>
@@ -248,6 +249,9 @@ const SearchComponent = () => {
                                         <th scope="col">Title</th>
                                         <th scope="col">Mobile</th>
                                         <th scope="col">Email</th>
+                                        <th scope="col">Second Mobile</th>
+                                        <th scope="col">Address</th>
+                                        <th scope="col">Notes</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -255,7 +259,7 @@ const SearchComponent = () => {
                                         state.data.map((item, idx) => {
                                             return (
                                                 <tr key={'tr' + idx}>
-                                                    <td key={idx + 'id' + idx} scope="row"
+                                                    <td key={idx + 'id' + idx}
                                                         style={{maxWidth: '100px'}}>{idx + 1}</td>
                                                     <td key={'serial' + item.serial + idx}>{item.serial}</td>
                                                     <td key={'name' + item.name + idx}>
@@ -279,6 +283,15 @@ const SearchComponent = () => {
                                                     <td key={'email' + item.email + idx}
                                                         style={{textOverflow: 'ellipsis'}}>
                                                         {item.email}
+                                                    </td>
+                                                    <td key={'sec_phone' + item.sec_phone + idx}>
+                                                        {item.sec_phone}
+                                                    </td>
+                                                    <td key={'address' + item.address + idx}>
+                                                        {item.address}
+                                                    </td>
+                                                    <td key={'notes' + item.notes + idx}>
+                                                        {item.notes}
                                                     </td>
                                                 </tr>
                                             )
@@ -376,6 +389,9 @@ const SearchComponent = () => {
                         <th scope="col">Sub Item</th>
                         <th scope="col">Title</th>
                         <th scope="col">Mobile</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Second Mobile</th>
+                        <th scope="col">Address</th>
                         <th scope="col">Notes</th>
                         <th></th>
                     </tr>
@@ -386,41 +402,51 @@ const SearchComponent = () => {
                             return (
                                 <tr key={'tr' + idx}>
                                     <th key={idx + 'id' + idx} scope="row">{idx + 1}</th>
-                                    <td key={'serial' + item.serial + idx}>{item.serial}</td>
-                                    <td key={'name' + item.name + idx}>
+                                    <td key={'serial' + item.serial + idx} style={{minWidth: '300px'}}>{item.serial}</td>
+                                    <td key={'name' + item.name + idx} style={{minWidth: '300px'}}>
                                         <input type={'text'}
                                                defaultValue={item.name}
                                                className={'dashboard-input'}
                                                onChange={(event => onChangeName(item.id, event))}
                                         />
                                     </td>
-                                    <td key={'category' + item.category + idx}>
+                                    <td key={'category' + item.category + idx} style={{minWidth: '300px'}}>
                                         {item.category}
                                     </td>
-                                    <td key={'item' + item.item + idx}>
+                                    <td key={'item' + item.item + idx} style={{minWidth: '300px'}}>
                                         {item.item}
                                     </td>
-                                    <td key={'subItem' + item.subItem + idx}>
+                                    <td key={'subItem' + item.subItem + idx} style={{minWidth: '300px'}}>
                                         {item.subItem}
                                     </td>
-                                    <td key={'role' + item.role + idx}>
+                                    <td key={'role' + item.role + idx} style={{minWidth: '300px'}}>
                                         <input type={'text'}
                                                defaultValue={item.role}
                                                className={'dashboard-input'}
                                                onChange={(event => onChangeRole(item.id, event))}/>
                                     </td>
-                                    <td key={'phone' + item.phone + idx}>
+                                    <td key={'phone' + item.phone + idx} style={{minWidth: '300px'}}>
                                         <input type={'number'}
                                                defaultValue={item.phone}
                                                className={'dashboard-input'}
                                                onChange={(event => onChangePhone(item.id, event))}
                                         />
                                     </td>
-                                    <td key={'note' + item.notes + idx}>
+                                    <td key={'email' + item.email + idx} style={{minWidth: '300px'}}>
+                                        {item.email}
+                                    </td>
+                                    <td key={'sec_phone' + item.sec_phone + idx} style={{minWidth: '300px'}}>
+                                        {item.sec_phone}
+                                    </td>
+                                    <td key={'address' + item.address + idx} style={{minWidth: '300px'}}>
+                                        {item.address}
+                                    </td>
+                                    <td key={'note' + item.notes + idx} style={{minWidth: '300px'}}>
                                         <input type={'text'}
                                                defaultValue={item.notes}
                                                className={'dashboard-input'}
                                                onChange={(event => onChangeNotes(item.id, event))}
+                                               style={{minWidth: '300px'}}
                                         />
                                     </td>
                                     <td>
